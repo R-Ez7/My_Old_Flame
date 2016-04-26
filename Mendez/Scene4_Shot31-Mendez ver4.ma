@@ -1,6 +1,6 @@
 //Maya ASCII 2016 scene
 //Name: Scene4_Shot31-Mendez ver4.ma
-//Last modified: Thu, Apr 21, 2016 12:45:29 PM
+//Last modified: Mon, Apr 25, 2016 07:21:55 PM
 //Codeset: 1252
 file -rdi 1 -ns "Robot_Rig" -rfn "Robot_RigRN" -op "v=0;p=17;f=0" -typ "mayaAscii"
 		 "/Users/R_Ez7/Documents/My_Old_Flame//Characters/Robot Rig.ma";
@@ -22,17 +22,17 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "C030C4A7-459F-6876-B57F-41891749B441";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 4.2282629759774331 11.377110423623046 36.298254863814059 ;
-	setAttr ".r" -type "double3" -5.7383527386954745 -1069.799999999168 0 ;
+	setAttr ".t" -type "double3" -8.9160856676438449 9.0802445191998267 37.565725018986569 ;
+	setAttr ".r" -type "double3" -2.7383527386827171 -1098.1999999989171 -2.092531746288705e-016 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "2C3EEE10-421A-9837-B2AD-8AB5AFFA7079";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 20.011504934819399;
+	setAttr ".coi" 23.157418242945162;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" -1.7557915611864119 8.2493644476048669 15.463785795618087 ;
+	setAttr ".tp" -type "double3" -1.6914744055031701 7.9738970430233413 15.591945028924957 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 	setAttr ".dgm" no;
 createNode transform -s -n "top";
@@ -139,6 +139,13 @@ createNode camera -n "cameraShape1" -p "camera1";
 	setAttr ".man" -type "string" "camera1_mask";
 	setAttr ".tp" -type "double3" -0.76356348764254189 4.1825164774307506 10.301058665160754 ;
 	setAttr ".dr" yes;
+createNode transform -n "directionalLight1";
+	rename -uid "C692D4E3-473E-0E8B-0460-0E9BE5D1DF6A";
+	setAttr ".t" -type "double3" 0 14.757494385177067 13.388321164059853 ;
+	setAttr ".r" -type "double3" -31.790170066602162 0 27.272935160894228 ;
+createNode directionalLight -n "directionalLightShape1" -p "directionalLight1";
+	rename -uid "00EFCB70-428B-FAC8-0ABE-44AF75E0B224";
+	setAttr -k off ".v";
 createNode mentalrayItemsList -s -n "mentalrayItemsList";
 	rename -uid "CE1EB5C2-422A-3F8D-4472-A1B3FF89E5ED";
 createNode mentalrayGlobals -s -n "mentalrayGlobals";
@@ -399,15 +406,15 @@ createNode mentalrayOptions -s -n "miDefaultOptions";
 createNode mentalrayFramebuffer -s -n "miDefaultFramebuffer";
 	rename -uid "06FC659C-46CF-1DE6-A659-1D97CFFB11B1";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "B0064855-4C1B-A15F-D3C5-249C3D17A750";
-	setAttr -s 16 ".lnk";
-	setAttr -s 16 ".slnk";
+	rename -uid "50B24CD1-4CB7-7585-AB12-CF89FC878B3E";
+	setAttr -s 9 ".lnk";
+	setAttr -s 9 ".slnk";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "87D53A20-41A2-943D-D6EC-20A5E2CB8CEF";
+	rename -uid "790965A1-4E95-8907-0ADF-25969DAF5B6A";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "F55C57B1-47B9-DE29-CDAA-5688DD2BE801";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "8727C5E9-48C8-E795-1956-5F8C9BAAFAF8";
+	rename -uid "DD4994B6-4E9E-B559-0119-3EB75B79C78A";
 	setAttr -s 10 ".rlmi[1:9]"  3 2 1 4 5 6 7 8 
 		9;
 createNode renderLayer -n "defaultRenderLayer";
@@ -23559,13 +23566,13 @@ createNode animCurveTA -n "camera1_rotateY";
 createNode script -n "uiConfigurationScriptNode";
 	rename -uid "0F729D9D-4638-1932-CCED-EF8C2AF5F8E2";
 	setAttr ".b" -type "string" (
-		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `modelPanel -unParent -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels `;\n\t\t\t$editorName = $panelName;\n            modelEditor -e \n                -camera \"camera1\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n"
+		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `modelPanel -unParent -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels `;\n\t\t\t$editorName = $panelName;\n            modelEditor -e \n                -camera \"camera1\" \n                -useInteractiveMode 0\n                -displayLights \"all\" \n                -displayAppearance \"smoothShaded\" \n"
 		+ "                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 1\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n"
 		+ "                -rendererName \"vp2Renderer\" \n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 256 256 \n                -bumpResolution 512 512 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 1\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -nurbsCurves 0\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n"
-		+ "                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 517\n                -height 390\n                -sceneRenderFilter 0\n                $editorName;\n            modelEditor -e -viewSelected 0 $editorName;\n            modelEditor -e \n"
-		+ "                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"camera1\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n"
+		+ "                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 1319\n                -height 767\n                -sceneRenderFilter 0\n                $editorName;\n            modelEditor -e -viewSelected 0 $editorName;\n            modelEditor -e \n"
+		+ "                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"camera1\" \n            -useInteractiveMode 0\n            -displayLights \"all\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n"
 		+ "            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n"
-		+ "            -nurbsCurves 0\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 517\n            -height 390\n            -sceneRenderFilter 0\n            $editorName;\n"
+		+ "            -nurbsCurves 0\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1319\n            -height 767\n            -sceneRenderFilter 0\n            $editorName;\n"
 		+ "        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\tif ($useSceneConfig) {\n\t\tmodelPanel -e -to $panelName;\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `modelPanel -unParent -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels `;\n\t\t\t$editorName = $panelName;\n            modelEditor -e \n                -camera \"side\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n"
 		+ "                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -rendererName \"vp2Renderer\" \n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 256 256 \n                -bumpResolution 512 512 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n"
 		+ "                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 1\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n"
@@ -23579,11 +23586,11 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 1\n                -height 1\n                -sceneRenderFilter 0\n                $editorName;\n            modelEditor -e -viewSelected 0 $editorName;\n            modelEditor -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n"
 		+ "            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n"
 		+ "            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n"
-		+ "            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `modelPanel -unParent -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels `;\n\t\t\t$editorName = $panelName;\n            modelEditor -e \n                -camera \"persp\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n"
+		+ "            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `modelPanel -unParent -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels `;\n\t\t\t$editorName = $panelName;\n            modelEditor -e \n                -camera \"persp\" \n                -useInteractiveMode 0\n                -displayLights \"all\" \n                -displayAppearance \"smoothShaded\" \n"
 		+ "                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n"
 		+ "                -rendererName \"vp2Renderer\" \n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 256 256 \n                -bumpResolution 512 512 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 1\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n"
 		+ "                -hulls 1\n                -grid 0\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 1615\n                -height 730\n                -sceneRenderFilter 0\n                $editorName;\n            modelEditor -e -viewSelected 0 $editorName;\n            modelEditor -e \n"
-		+ "                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n"
+		+ "                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"all\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n"
 		+ "            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n"
 		+ "            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 0\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1615\n            -height 730\n            -sceneRenderFilter 0\n            $editorName;\n"
 		+ "        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `outlinerPanel -unParent -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels `;\n\t\t\t$editorName = $panelName;\n            outlinerEditor -e \n                -docTag \"isolOutln_fromSeln\" \n                -showShapes 0\n                -showReferenceNodes 1\n                -showReferenceMembers 1\n                -showAttributes 0\n                -showConnected 0\n                -showAnimCurvesOnly 0\n                -showMuteInfo 0\n                -organizeByLayer 1\n                -showAnimLayerWeight 1\n                -autoExpandLayers 1\n                -autoExpand 0\n                -showDagOnly 1\n                -showAssets 1\n"
@@ -23624,8 +23631,8 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"nodeEditorPanel\" -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels `;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n"
 		+ "                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -activeTab -1\n                -editorMode \"default\" \n                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n"
 		+ "                -gridSnap 0\n                -gridVisibility 1\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -activeTab -1\n                -editorMode \"default\" \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 0\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1615\\n    -height 730\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 0\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1615\\n    -height 730\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"all\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 0\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1615\\n    -height 730\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"all\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 0\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1615\\n    -height 730\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -23635,243 +23642,16 @@ createNode script -n "sceneConfigurationScriptNode";
 createNode reference -n "Robot_RigRN";
 	rename -uid "6079B231-46C4-69E9-6BDD-E6AC09B86F4D";
 	setAttr ".fn[0]" -type "string" "C:/Users/10433084/Documents/My_Old_Flame//Characters/Robot Rig.ma";
-	setAttr -s 494 ".phl";
+	setAttr -s 500 ".phl";
 	setAttr ".phl[479]" 0;
 	setAttr ".phl[480]" 0;
 	setAttr ".phl[481]" 0;
 	setAttr ".phl[482]" 0;
 	setAttr ".phl[483]" 0;
 	setAttr ".phl[484]" 0;
-	setAttr ".phl[905]" 0;
-	setAttr ".phl[906]" 0;
-	setAttr ".phl[907]" 0;
-	setAttr ".phl[908]" 0;
-	setAttr ".phl[909]" 0;
-	setAttr ".phl[910]" 0;
-	setAttr ".phl[911]" 0;
-	setAttr ".phl[912]" 0;
-	setAttr ".phl[913]" 0;
-	setAttr ".phl[914]" 0;
-	setAttr ".phl[915]" 0;
-	setAttr ".phl[916]" 0;
-	setAttr ".phl[917]" 0;
-	setAttr ".phl[918]" 0;
-	setAttr ".phl[919]" 0;
-	setAttr ".phl[920]" 0;
-	setAttr ".phl[921]" 0;
-	setAttr ".phl[922]" 0;
-	setAttr ".phl[923]" 0;
-	setAttr ".phl[924]" 0;
-	setAttr ".phl[925]" 0;
-	setAttr ".phl[926]" 0;
-	setAttr ".phl[927]" 0;
-	setAttr ".phl[928]" 0;
-	setAttr ".phl[929]" 0;
-	setAttr ".phl[930]" 0;
-	setAttr ".phl[931]" 0;
-	setAttr ".phl[932]" 0;
-	setAttr ".phl[933]" 0;
-	setAttr ".phl[934]" 0;
-	setAttr ".phl[935]" 0;
-	setAttr ".phl[936]" 0;
-	setAttr ".phl[937]" 0;
-	setAttr ".phl[938]" 0;
-	setAttr ".phl[939]" 0;
-	setAttr ".phl[940]" 0;
-	setAttr ".phl[941]" 0;
-	setAttr ".phl[942]" 0;
-	setAttr ".phl[943]" 0;
-	setAttr ".phl[944]" 0;
-	setAttr ".phl[945]" 0;
-	setAttr ".phl[946]" 0;
-	setAttr ".phl[947]" 0;
-	setAttr ".phl[948]" 0;
-	setAttr ".phl[949]" 0;
-	setAttr ".phl[950]" 0;
-	setAttr ".phl[951]" 0;
-	setAttr ".phl[952]" 0;
-	setAttr ".phl[953]" 0;
-	setAttr ".phl[954]" 0;
-	setAttr ".phl[955]" 0;
-	setAttr ".phl[956]" 0;
-	setAttr ".phl[957]" 0;
-	setAttr ".phl[958]" 0;
-	setAttr ".phl[959]" 0;
-	setAttr ".phl[960]" 0;
-	setAttr ".phl[961]" 0;
-	setAttr ".phl[962]" 0;
-	setAttr ".phl[963]" 0;
-	setAttr ".phl[964]" 0;
-	setAttr ".phl[965]" 0;
-	setAttr ".phl[966]" 0;
-	setAttr ".phl[967]" 0;
-	setAttr ".phl[968]" 0;
-	setAttr ".phl[969]" 0;
-	setAttr ".phl[970]" 0;
-	setAttr ".phl[971]" 0;
-	setAttr ".phl[972]" 0;
-	setAttr ".phl[973]" 0;
-	setAttr ".phl[974]" 0;
-	setAttr ".phl[975]" 0;
-	setAttr ".phl[976]" 0;
-	setAttr ".phl[977]" 0;
-	setAttr ".phl[978]" 0;
-	setAttr ".phl[979]" 0;
-	setAttr ".phl[980]" 0;
-	setAttr ".phl[981]" 0;
-	setAttr ".phl[982]" 0;
-	setAttr ".phl[983]" 0;
-	setAttr ".phl[984]" 0;
-	setAttr ".phl[985]" 0;
-	setAttr ".phl[986]" 0;
-	setAttr ".phl[987]" 0;
-	setAttr ".phl[988]" 0;
-	setAttr ".phl[989]" 0;
-	setAttr ".phl[990]" 0;
-	setAttr ".phl[991]" 0;
-	setAttr ".phl[992]" 0;
-	setAttr ".phl[993]" 0;
-	setAttr ".phl[994]" 0;
-	setAttr ".phl[995]" 0;
-	setAttr ".phl[996]" 0;
-	setAttr ".phl[997]" 0;
-	setAttr ".phl[998]" 0;
-	setAttr ".phl[999]" 0;
-	setAttr ".phl[1000]" 0;
-	setAttr ".phl[1001]" 0;
-	setAttr ".phl[1002]" 0;
-	setAttr ".phl[1003]" 0;
-	setAttr ".phl[1004]" 0;
-	setAttr ".phl[1005]" 0;
-	setAttr ".phl[1006]" 0;
-	setAttr ".phl[1007]" 0;
-	setAttr ".phl[1008]" 0;
-	setAttr ".phl[1009]" 0;
-	setAttr ".phl[1010]" 0;
-	setAttr ".phl[1011]" 0;
-	setAttr ".phl[1012]" 0;
-	setAttr ".phl[1013]" 0;
-	setAttr ".phl[1014]" 0;
-	setAttr ".phl[1015]" 0;
-	setAttr ".phl[1016]" 0;
-	setAttr ".phl[1017]" 0;
-	setAttr ".phl[1018]" 0;
-	setAttr ".phl[1019]" 0;
-	setAttr ".phl[1020]" 0;
-	setAttr ".phl[1021]" 0;
-	setAttr ".phl[1022]" 0;
-	setAttr ".phl[1023]" 0;
-	setAttr ".phl[1024]" 0;
-	setAttr ".phl[1025]" 0;
-	setAttr ".phl[1026]" 0;
-	setAttr ".phl[1027]" 0;
-	setAttr ".phl[1028]" 0;
-	setAttr ".phl[1029]" 0;
-	setAttr ".phl[1030]" 0;
-	setAttr ".phl[1031]" 0;
-	setAttr ".phl[1032]" 0;
-	setAttr ".phl[1033]" 0;
-	setAttr ".phl[1034]" 0;
-	setAttr ".phl[1035]" 0;
-	setAttr ".phl[1036]" 0;
-	setAttr ".phl[1037]" 0;
-	setAttr ".phl[1038]" 0;
-	setAttr ".phl[1039]" 0;
-	setAttr ".phl[1040]" 0;
-	setAttr ".phl[1041]" 0;
-	setAttr ".phl[1042]" 0;
-	setAttr ".phl[1043]" 0;
-	setAttr ".phl[1044]" 0;
-	setAttr ".phl[1045]" 0;
-	setAttr ".phl[1046]" 0;
-	setAttr ".phl[1047]" 0;
-	setAttr ".phl[1048]" 0;
-	setAttr ".phl[1049]" 0;
-	setAttr ".phl[1050]" 0;
-	setAttr ".phl[1051]" 0;
-	setAttr ".phl[1052]" 0;
-	setAttr ".phl[1053]" 0;
-	setAttr ".phl[1054]" 0;
-	setAttr ".phl[1055]" 0;
-	setAttr ".phl[1056]" 0;
-	setAttr ".phl[1057]" 0;
-	setAttr ".phl[1058]" 0;
-	setAttr ".phl[1059]" 0;
-	setAttr ".phl[1060]" 0;
-	setAttr ".phl[1061]" 0;
-	setAttr ".phl[1062]" 0;
-	setAttr ".phl[1063]" 0;
-	setAttr ".phl[1064]" 0;
-	setAttr ".phl[1065]" 0;
-	setAttr ".phl[1066]" 0;
-	setAttr ".phl[1067]" 0;
-	setAttr ".phl[1068]" 0;
-	setAttr ".phl[1069]" 0;
-	setAttr ".phl[1070]" 0;
-	setAttr ".phl[1071]" 0;
-	setAttr ".phl[1072]" 0;
-	setAttr ".phl[1073]" 0;
-	setAttr ".phl[1074]" 0;
-	setAttr ".phl[1075]" 0;
-	setAttr ".phl[1076]" 0;
-	setAttr ".phl[1077]" 0;
-	setAttr ".phl[1078]" 0;
-	setAttr ".phl[1079]" 0;
-	setAttr ".phl[1080]" 0;
-	setAttr ".phl[1081]" 0;
-	setAttr ".phl[1082]" 0;
-	setAttr ".phl[1083]" 0;
-	setAttr ".phl[1084]" 0;
-	setAttr ".phl[1085]" 0;
-	setAttr ".phl[1086]" 0;
-	setAttr ".phl[1087]" 0;
-	setAttr ".phl[1088]" 0;
-	setAttr ".phl[1089]" 0;
-	setAttr ".phl[1090]" 0;
-	setAttr ".phl[1091]" 0;
-	setAttr ".phl[1092]" 0;
-	setAttr ".phl[1093]" 0;
-	setAttr ".phl[1094]" 0;
-	setAttr ".phl[1095]" 0;
-	setAttr ".phl[1096]" 0;
-	setAttr ".phl[1097]" 0;
-	setAttr ".phl[1098]" 0;
-	setAttr ".phl[1099]" 0;
-	setAttr ".phl[1100]" 0;
-	setAttr ".phl[1101]" 0;
-	setAttr ".phl[1102]" 0;
-	setAttr ".phl[1103]" 0;
-	setAttr ".phl[1104]" 0;
-	setAttr ".phl[1105]" 0;
-	setAttr ".phl[1106]" 0;
-	setAttr ".phl[1107]" 0;
-	setAttr ".phl[1108]" 0;
-	setAttr ".phl[1109]" 0;
-	setAttr ".phl[1110]" 0;
-	setAttr ".phl[1111]" 0;
-	setAttr ".phl[1112]" 0;
-	setAttr ".phl[1113]" 0;
-	setAttr ".phl[1114]" 0;
-	setAttr ".phl[1115]" 0;
-	setAttr ".phl[1116]" 0;
-	setAttr ".phl[1117]" 0;
-	setAttr ".phl[1118]" 0;
-	setAttr ".phl[1119]" 0;
-	setAttr ".phl[1120]" 0;
-	setAttr ".phl[1121]" 0;
-	setAttr ".phl[1122]" 0;
 	setAttr ".phl[1123]" 0;
-	setAttr ".phl[1124]" 0;
-	setAttr ".phl[1125]" 0;
-	setAttr ".phl[1126]" 0;
-	setAttr ".phl[1127]" 0;
 	setAttr ".phl[1128]" 0;
-	setAttr ".phl[1129]" 0;
-	setAttr ".phl[1130]" 0;
-	setAttr ".phl[1131]" 0;
-	setAttr ".phl[1132]" 0;
 	setAttr ".phl[1133]" 0;
-	setAttr ".phl[1134]" 0;
 	setAttr ".phl[1135]" 0;
 	setAttr ".phl[1136]" 0;
 	setAttr ".phl[1137]" 0;
@@ -23890,9 +23670,242 @@ createNode reference -n "Robot_RigRN";
 	setAttr ".phl[1150]" 0;
 	setAttr ".phl[1151]" 0;
 	setAttr ".phl[1152]" 0;
+	setAttr ".phl[1153]" 0;
+	setAttr ".phl[1154]" 0;
+	setAttr ".phl[1155]" 0;
+	setAttr ".phl[1156]" 0;
+	setAttr ".phl[1157]" 0;
+	setAttr ".phl[1158]" 0;
+	setAttr ".phl[1159]" 0;
+	setAttr ".phl[1160]" 0;
+	setAttr ".phl[1161]" 0;
+	setAttr ".phl[1162]" 0;
+	setAttr ".phl[1163]" 0;
+	setAttr ".phl[1164]" 0;
+	setAttr ".phl[1165]" 0;
+	setAttr ".phl[1166]" 0;
+	setAttr ".phl[1167]" 0;
+	setAttr ".phl[1168]" 0;
+	setAttr ".phl[1169]" 0;
+	setAttr ".phl[1170]" 0;
+	setAttr ".phl[1171]" 0;
+	setAttr ".phl[1172]" 0;
+	setAttr ".phl[1173]" 0;
+	setAttr ".phl[1174]" 0;
+	setAttr ".phl[1175]" 0;
+	setAttr ".phl[1176]" 0;
+	setAttr ".phl[1177]" 0;
+	setAttr ".phl[1178]" 0;
+	setAttr ".phl[1179]" 0;
+	setAttr ".phl[1180]" 0;
+	setAttr ".phl[1181]" 0;
+	setAttr ".phl[1182]" 0;
+	setAttr ".phl[1183]" 0;
+	setAttr ".phl[1184]" 0;
+	setAttr ".phl[1185]" 0;
+	setAttr ".phl[1186]" 0;
+	setAttr ".phl[1187]" 0;
+	setAttr ".phl[1188]" 0;
+	setAttr ".phl[1189]" 0;
+	setAttr ".phl[1190]" 0;
+	setAttr ".phl[1191]" 0;
+	setAttr ".phl[1192]" 0;
+	setAttr ".phl[1193]" 0;
+	setAttr ".phl[1194]" 0;
+	setAttr ".phl[1195]" 0;
+	setAttr ".phl[1196]" 0;
+	setAttr ".phl[1197]" 0;
+	setAttr ".phl[1198]" 0;
+	setAttr ".phl[1199]" 0;
+	setAttr ".phl[1200]" 0;
+	setAttr ".phl[1201]" 0;
+	setAttr ".phl[1202]" 0;
+	setAttr ".phl[1203]" 0;
+	setAttr ".phl[1204]" 0;
+	setAttr ".phl[1205]" 0;
+	setAttr ".phl[1206]" 0;
+	setAttr ".phl[1207]" 0;
+	setAttr ".phl[1208]" 0;
+	setAttr ".phl[1209]" 0;
+	setAttr ".phl[1210]" 0;
+	setAttr ".phl[1211]" 0;
+	setAttr ".phl[1212]" 0;
+	setAttr ".phl[1213]" 0;
+	setAttr ".phl[1214]" 0;
+	setAttr ".phl[1215]" 0;
+	setAttr ".phl[1216]" 0;
+	setAttr ".phl[1217]" 0;
+	setAttr ".phl[1218]" 0;
+	setAttr ".phl[1219]" 0;
+	setAttr ".phl[1220]" 0;
+	setAttr ".phl[1221]" 0;
+	setAttr ".phl[1222]" 0;
+	setAttr ".phl[1223]" 0;
+	setAttr ".phl[1224]" 0;
+	setAttr ".phl[1225]" 0;
+	setAttr ".phl[1226]" 0;
+	setAttr ".phl[1227]" 0;
+	setAttr ".phl[1228]" 0;
+	setAttr ".phl[1229]" 0;
+	setAttr ".phl[1230]" 0;
+	setAttr ".phl[1231]" 0;
+	setAttr ".phl[1232]" 0;
+	setAttr ".phl[1233]" 0;
+	setAttr ".phl[1234]" 0;
+	setAttr ".phl[1235]" 0;
+	setAttr ".phl[1236]" 0;
+	setAttr ".phl[1237]" 0;
+	setAttr ".phl[1238]" 0;
+	setAttr ".phl[1239]" 0;
+	setAttr ".phl[1240]" 0;
+	setAttr ".phl[1241]" 0;
+	setAttr ".phl[1242]" 0;
+	setAttr ".phl[1243]" 0;
+	setAttr ".phl[1244]" 0;
+	setAttr ".phl[1245]" 0;
+	setAttr ".phl[1246]" 0;
+	setAttr ".phl[1247]" 0;
+	setAttr ".phl[1248]" 0;
+	setAttr ".phl[1249]" 0;
+	setAttr ".phl[1250]" 0;
+	setAttr ".phl[1251]" 0;
+	setAttr ".phl[1252]" 0;
+	setAttr ".phl[1253]" 0;
+	setAttr ".phl[1254]" 0;
+	setAttr ".phl[1255]" 0;
+	setAttr ".phl[1256]" 0;
+	setAttr ".phl[1257]" 0;
+	setAttr ".phl[1258]" 0;
+	setAttr ".phl[1259]" 0;
+	setAttr ".phl[1260]" 0;
+	setAttr ".phl[1261]" 0;
+	setAttr ".phl[1262]" 0;
+	setAttr ".phl[1263]" 0;
+	setAttr ".phl[1264]" 0;
+	setAttr ".phl[1265]" 0;
+	setAttr ".phl[1266]" 0;
+	setAttr ".phl[1267]" 0;
+	setAttr ".phl[1268]" 0;
+	setAttr ".phl[1269]" 0;
+	setAttr ".phl[1270]" 0;
+	setAttr ".phl[1271]" 0;
+	setAttr ".phl[1272]" 0;
+	setAttr ".phl[1273]" 0;
+	setAttr ".phl[1274]" 0;
+	setAttr ".phl[1275]" 0;
+	setAttr ".phl[1276]" 0;
+	setAttr ".phl[1277]" 0;
+	setAttr ".phl[1278]" 0;
+	setAttr ".phl[1279]" 0;
+	setAttr ".phl[1280]" 0;
+	setAttr ".phl[1281]" 0;
+	setAttr ".phl[1282]" 0;
+	setAttr ".phl[1283]" 0;
+	setAttr ".phl[1284]" 0;
+	setAttr ".phl[1285]" 0;
+	setAttr ".phl[1286]" 0;
+	setAttr ".phl[1287]" 0;
+	setAttr ".phl[1288]" 0;
+	setAttr ".phl[1289]" 0;
+	setAttr ".phl[1290]" 0;
+	setAttr ".phl[1291]" 0;
+	setAttr ".phl[1292]" 0;
+	setAttr ".phl[1293]" 0;
+	setAttr ".phl[1294]" 0;
+	setAttr ".phl[1295]" 0;
+	setAttr ".phl[1296]" 0;
+	setAttr ".phl[1297]" 0;
+	setAttr ".phl[1298]" 0;
+	setAttr ".phl[1299]" 0;
+	setAttr ".phl[1300]" 0;
+	setAttr ".phl[1301]" 0;
+	setAttr ".phl[1302]" 0;
+	setAttr ".phl[1303]" 0;
+	setAttr ".phl[1304]" 0;
+	setAttr ".phl[1305]" 0;
+	setAttr ".phl[1306]" 0;
+	setAttr ".phl[1307]" 0;
+	setAttr ".phl[1308]" 0;
+	setAttr ".phl[1309]" 0;
+	setAttr ".phl[1310]" 0;
+	setAttr ".phl[1311]" 0;
+	setAttr ".phl[1312]" 0;
+	setAttr ".phl[1313]" 0;
+	setAttr ".phl[1314]" 0;
+	setAttr ".phl[1315]" 0;
+	setAttr ".phl[1316]" 0;
+	setAttr ".phl[1317]" 0;
+	setAttr ".phl[1318]" 0;
+	setAttr ".phl[1319]" 0;
+	setAttr ".phl[1320]" 0;
+	setAttr ".phl[1321]" 0;
+	setAttr ".phl[1322]" 0;
+	setAttr ".phl[1323]" 0;
+	setAttr ".phl[1324]" 0;
+	setAttr ".phl[1325]" 0;
+	setAttr ".phl[1326]" 0;
+	setAttr ".phl[1327]" 0;
+	setAttr ".phl[1328]" 0;
+	setAttr ".phl[1329]" 0;
+	setAttr ".phl[1330]" 0;
+	setAttr ".phl[1331]" 0;
+	setAttr ".phl[1332]" 0;
+	setAttr ".phl[1333]" 0;
+	setAttr ".phl[1334]" 0;
+	setAttr ".phl[1335]" 0;
+	setAttr ".phl[1336]" 0;
+	setAttr ".phl[1337]" 0;
+	setAttr ".phl[1338]" 0;
+	setAttr ".phl[1339]" 0;
+	setAttr ".phl[1340]" 0;
+	setAttr ".phl[1341]" 0;
+	setAttr ".phl[1342]" 0;
+	setAttr ".phl[1343]" 0;
+	setAttr ".phl[1344]" 0;
+	setAttr ".phl[1345]" 0;
+	setAttr ".phl[1346]" 0;
+	setAttr ".phl[1347]" 0;
+	setAttr ".phl[1348]" 0;
+	setAttr ".phl[1349]" 0;
+	setAttr ".phl[1350]" 0;
+	setAttr ".phl[1351]" 0;
+	setAttr ".phl[1352]" 0;
+	setAttr ".phl[1353]" 0;
+	setAttr ".phl[1354]" 0;
+	setAttr ".phl[1355]" 0;
+	setAttr ".phl[1356]" 0;
+	setAttr ".phl[1357]" 0;
+	setAttr ".phl[1358]" 0;
+	setAttr ".phl[1359]" 0;
+	setAttr ".phl[1360]" 0;
+	setAttr ".phl[1361]" 0;
+	setAttr ".phl[1362]" 0;
+	setAttr ".phl[1363]" 0;
+	setAttr ".phl[1364]" 0;
+	setAttr ".phl[1365]" 0;
+	setAttr ".phl[1366]" 0;
+	setAttr ".phl[1367]" 0;
+	setAttr ".phl[1368]" 0;
+	setAttr ".phl[1369]" 0;
+	setAttr ".phl[1370]" 0;
+	setAttr ".phl[1371]" 0;
+	setAttr ".phl[1372]" 0;
+	setAttr ".phl[1373]" 0;
+	setAttr ".phl[1374]" 0;
+	setAttr ".phl[1375]" 0;
+	setAttr ".phl[1376]" 0;
+	setAttr ".phl[1377]" 0;
+	setAttr ".phl[1378]" 0;
+	setAttr ".phl[1379]" 0;
+	setAttr ".phl[1380]" 0;
+	setAttr ".phl[1381]" 0;
+	setAttr ".phl[1382]" 0;
+	setAttr ".phl[1383]" 0;
+	setAttr ".phl[1384]" 0;
+	setAttr ".phl[1385]" 0;
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"Robot_RigRN"
-		"Robot_RigRN" 289
+		"Robot_RigRN" 292
 		1 |Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl|Robot_Rig:R_armBall_Ctrl_Cor|Robot_Rig:R_armBall_Ctrl 
 		"blendParent1" "blendParent1" " -ci 1 -k 1 -dv 1 -smn 0 -smx 1 -at \"double\""
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "scale" 
@@ -24469,7 +24482,16 @@ createNode reference -n "Robot_RigRN";
 		"Robot_RigRN.placeHolderList[900]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl.visibility" 
 		"Robot_RigRN.placeHolderList[904]" ""
-		"Robot_RigRN" 596
+		5 0 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:settings_Grp|Robot_Rig:settings_Ctrl.ControlVisibility" 
+		"|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl.visibility" 
+		"Robot_RigRN.placeHolderList[1123]" "Robot_RigRN.placeHolderList[1124]" ""
+		5 0 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:settings_Grp|Robot_Rig:settings_Ctrl.ControlVisibility" 
+		"|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl.visibility" 
+		"Robot_RigRN.placeHolderList[1128]" "Robot_RigRN.placeHolderList[1129]" ""
+		5 0 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:settings_Grp|Robot_Rig:settings_Ctrl.ControlVisibility" 
+		"|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl.visibility" 
+		"Robot_RigRN.placeHolderList[1133]" "Robot_RigRN.placeHolderList[1134]" ""
+		"Robot_RigRN" 606
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:reference_Grp|Robot_Rig:backReference|Robot_Rig:backReferenceShape" 
 		"coverage" " -type \"short2\" 430 960"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl" "translate" " -type \"double3\" 0 0 0"
@@ -24488,7 +24510,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl" "translateZ" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl" "rotate" 
-		" -type \"double3\" -11.549980307991946 0 0"
+		" -type \"double3\" 3.5591152539956212 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl" "rotateX" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl" "rotateY" 
@@ -24496,7 +24518,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl" "rotateZ" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl" 
-		"rotate" " -type \"double3\" -35.436888967648073 0 0"
+		"rotate" " -type \"double3\" -35.436888967648073 0 1.9521346998404903"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl" 
 		"rotateY" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl" 
@@ -24504,7 +24526,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_thigh_Fk_Ctrl" 
-		"rotate" " -type \"double3\" 35.096710469706743 0 29.304975814288511"
+		"rotate" " -type \"double3\" 36.294454728977982 -40.326583714491669 74.322906089682704"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_thigh_Fk_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_thigh_Fk_Ctrl" 
@@ -24512,7 +24535,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_thigh_Fk_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_thigh_Fk_Cor|Robot_Rig:R_thigh_Fk_Ctrl" 
-		"rotate" " -type \"double3\" 58.518214260528019 0 5.7420923183722676"
+		"rotate" " -type \"double3\" -33.223724294251546 35.031014057813238 -11.73290467976145"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_thigh_Fk_Cor|Robot_Rig:R_thigh_Fk_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_thigh_Fk_Cor|Robot_Rig:R_thigh_Fk_Ctrl" 
@@ -24536,9 +24560,17 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_heel_Fk_Ctrl_Grp|Robot_Rig:L_heel_Fk_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_shin_Fk_Grp|Robot_Rig:L_shin_Fk_Ctrl" 
-		"rotateX" " -av 21.081299031510582"
+		"rotateX" " -av 21.081"
+		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_shin_Fk_Grp|Robot_Rig:L_shin_Fk_Ctrl|Robot_Rig:L_foot_Fk_Ctrl" 
+		"rotate" " -type \"double3\" 19.131959908841662 0 0"
+		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_shin_Fk_Grp|Robot_Rig:L_shin_Fk_Ctrl|Robot_Rig:L_foot_Fk_Ctrl" 
+		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_shin_Fk_Grp|Robot_Rig:R_shin_Fk_Ctrl" 
-		"rotateX" " -av 21.081299031510582"
+		"rotateX" " -av 46.016486849852704"
+		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_shin_Fk_Grp|Robot_Rig:R_shin_Fk_Ctrl|Robot_Rig:R_foot_Fk_Ctrl" 
+		"rotate" " -type \"double3\" 12.811508015302884 0 0"
+		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_shin_Fk_Grp|Robot_Rig:R_shin_Fk_Ctrl|Robot_Rig:R_foot_Fk_Ctrl" 
+		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_toe_Fk_Grp|Robot_Rig:R_toe_Fk_Ctrl" 
 		"rotate" " -type \"double3\" 25.218749114061243 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_toe_Fk_Grp|Robot_Rig:R_toe_Fk_Ctrl" 
@@ -24556,7 +24588,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_heel_Fk_Grp|Robot_Rig:R_heel_Fk_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl" 
-		"rotate" " -type \"double3\" 27.70703404173047 0 0"
+		"rotate" " -type \"double3\" 16.958621412160984 0 22.735080816810118"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl" 
 		"rotateY" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl" 
@@ -24572,7 +24604,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 -38.380693880941514"
+		"rotate" " -type \"double3\" 0 0 -19.427953935736692"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl" 
@@ -24580,7 +24612,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl" 
-		"rotate" " -type \"double3\" 0 -12.058813237707504 -48.740275313519831"
+		"rotate" " -type \"double3\" -114.98133297714395 -0.73603059120632008 13.498052049107232"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl" 
@@ -24592,7 +24625,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl|Robot_Rig:L_armBall_Ctrl" 
 		"rotateZ" " -av 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl" 
-		"rotate" " -type \"double3\" 0 -5.1290395449788679 -60.661612108168583"
+		"rotate" " -type \"double3\" 0 37.827749607143879 -32.463755225551381"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl" 
@@ -24604,7 +24637,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl|Robot_Rig:R_armBall_Ctrl_Cor|Robot_Rig:R_armBall_Ctrl" 
 		"rotateZ" " -av 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:antenna_Ctrl" 
-		"translate" " -type \"double3\" -0.037390115480044311 -1.2184775331725919 -4.1195110944122639"
+		"translate" " -type \"double3\" -1.2601377166357015 -0.77085955420833674 -3.3553181173515112"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:antenna_Ctrl" 
 		"translateX" " -av"
@@ -24613,7 +24646,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:antenna_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_kneePV_Ctrl" "translate" 
-		" -type \"double3\" 1.6043363377559758 0 0"
+		" -type \"double3\" 2.259519588275797 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_kneePV_Ctrl" "translateX" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_kneePV_Ctrl" "translateY" 
@@ -24621,7 +24654,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_kneePV_Ctrl" "translateZ" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_kneePV_Ctrl" "translate" 
-		" -type \"double3\" -1.8560951033299147 0 0"
+		" -type \"double3\" -2.8701437803409338 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_kneePV_Ctrl" "translateX" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_kneePV_Ctrl" "translateY" 
@@ -24629,7 +24662,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_kneePV_Ctrl" "translateZ" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl" "translate" 
-		" -type \"double3\" -1.8560951033299147 2.0746774188209227 -3.7075738074752898"
+		" -type \"double3\" 0.65918599817613566 1.5641033549630434 -3.9858026259840154"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl" "translateX" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl" "translateY" 
@@ -24637,13 +24670,13 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl" "translateZ" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl" "rotate" 
-		" -type \"double3\" 67.154713022730789 0 0"
+		" -type \"double3\" 84.61051541618275 -26.322261985992586 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl" "rotateX" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl" "rotateY" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "translate" 
-		" -type \"double3\" 1.6043363377559758 2.2460441804954576 -0.55391255876439038"
+		" -type \"double3\" 1.5355455038536634 1.3533052190537092 -4.0954085622286636"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "translateX" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "translateY" 
@@ -24651,7 +24684,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "translateZ" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "rotate" 
-		" -type \"double3\" 67.154713022730789 0 0"
+		" -type \"double3\" 67.154713022730789 10.979965825265753 9.5000947066624075"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "rotateX" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "rotateY" 
@@ -24659,7 +24692,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl" "rotateZ" 
 		" -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl" 
-		"translate" " -type \"double3\" 0.0015895515934468574 -0.00068866802437647558 0.8693143217755861"
+		"translate" " -type \"double3\" -0.004763687519140164 -0.0030353590373374262 0.90071634039574622"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl" 
 		"translateX" " -av"
@@ -24668,7 +24701,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl" 
-		"rotate" " -type \"double3\" 0 -12.516969898642534 0"
+		"rotate" " -type \"double3\" 0 -12.846312902653581 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl" 
@@ -24768,7 +24801,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_armSettings_Ctrl" 
 		"IkFkSwitch" " -av -k 1 1"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -1.0175108110810671 -0.86810802531578946 4.8415293767200964"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
@@ -24776,7 +24810,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" -2.6163676964730422 -70.213186964480599 -39.803730962619063"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
@@ -24784,7 +24819,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 0"
+		"rotate" " -type \"double3\" -36.849770914204647 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl" 
@@ -24792,7 +24827,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl" 
-		"rotate" " -type \"double3\" 0 -20.451318279541631 24.105423144517925"
+		"rotate" " -type \"double3\" 14.327739068677818 -6.1717640006116854 1.0181240617597176"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl" 
@@ -24800,7 +24836,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 16.087818919256968"
+		"rotate" " -type \"double3\" 0 0 19.833829639223712"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl" 
@@ -24808,7 +24844,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl|Robot_Rig:L_ring_03_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 16.087818919256968"
+		"rotate" " -type \"double3\" 0 0 19.833829639223712"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl|Robot_Rig:L_ring_03_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl|Robot_Rig:L_ring_03_Ctrl" 
@@ -24816,9 +24852,10 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl|Robot_Rig:L_ring_03_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl" 
-		"rotateZ" " -av 23.94396623159432"
+		"rotateZ" " -av 5.8871545457269372"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl" 
-		"rotate" " -type \"double3\" 0 43.451705753113451 38.936729792442144"
+		"rotate" " -type \"double3\" -21.505392283310275 11.660779332498848 44.94725652286963"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl" 
@@ -24826,7 +24863,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 19.312564483755068"
+		"rotate" " -type \"double3\" 0 0 -13.524185786032437"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl" 
@@ -24834,7 +24871,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl|Robot_Rig:L_thumb_03_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 19.312564483755068"
+		"rotate" " -type \"double3\" 0 0 13.924271236486105"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl|Robot_Rig:L_thumb_03_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl|Robot_Rig:L_thumb_03_Ctrl" 
@@ -24842,7 +24879,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl|Robot_Rig:L_thumb_03_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl" 
-		"rotate" " -type \"double3\" 0 23.956811512980472 1.5060281594841571"
+		"rotate" " -type \"double3\" 0 10.037258383323994 0.43106783335497262"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl" 
@@ -24850,7 +24887,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 9.6448755945701397"
+		"rotate" " -type \"double3\" 0 0 14.516054897388569"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl" 
@@ -24858,7 +24895,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl|Robot_Rig:L_index_03_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 20.045151919342992"
+		"rotate" " -type \"double3\" 0 0 24.916331222161421"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl|Robot_Rig:L_index_03_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl|Robot_Rig:L_index_03_Ctrl" 
@@ -24881,7 +24918,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl" 
-		"rotate" " -type \"double3\" -97.658923691016355 0 0"
+		"rotate" " -type \"double3\" -111.79840214778407 0 -13.889578429049548"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl" 
 		"rotateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl" 
@@ -24889,7 +24926,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl" 
-		"translate" " -type \"double3\" 0.060825410838813397 -0.30255955571859489 0.067107584756894489"
+		"translate" " -type \"double3\" 0.011337608068920558 -0.20812209059411982 0.038696031997060724"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl" 
 		"translateX" " -av"
@@ -24898,13 +24935,13 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 -0.23653304634389877"
+		"rotate" " -type \"double3\" 0 0 0.72223690933986073"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl" 
 		"eyelidVisible" " -k 1 1"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl" 
-		"translate" " -type \"double3\" 0.010068687640076006 -0.13112721555103088 -0.054052629818938526"
+		"translate" " -type \"double3\" 0.040757466051930293 -0.282948767525738 -0.090958413239722674"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl" 
 		"translateX" " -av"
@@ -24913,29 +24950,31 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 12.784827517434682"
+		"rotate" " -type \"double3\" 0 0 19.286516568085236"
+		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl" 
+		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off|Robot_Rig:R_upperEyelid_Ctrl" 
-		"translate" " -type \"double3\" -0.0003067667739674093 -0.13445429075486526 -0.077603256258208853"
+		"translate" " -type \"double3\" -0.0003067667739674093 -0.25193918458042885 -0.077603256258208853"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off|Robot_Rig:R_upperEyelid_Ctrl" 
 		"translateY" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off|Robot_Rig:R_upperEyelid_Ctrl" 
-		"rotate" " -type \"double3\" 0 0 11.184325694889216"
+		"rotate" " -type \"double3\" 0 0 29.017620257847689"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off|Robot_Rig:R_upperEyelid_Ctrl" 
 		"rotateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off|Robot_Rig:L_lowerEyelid_Ctrl" 
-		"translate" " -type \"double3\" -0.090406356932451026 -0.31327153751580039 -0.10798608258319849"
+		"translate" " -type \"double3\" -0.090406356932451026 -0.2259603444792872 -0.10798608258319849"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off|Robot_Rig:L_lowerEyelid_Ctrl" 
 		"translateY" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off|Robot_Rig:L_lowerEyelid_Ctrl" 
-		"scale" " -type \"double3\" 1 0.40134422127870067 1"
+		"scale" " -type \"double3\" 1 0.47741102844449657 1"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off|Robot_Rig:L_lowerEyelid_Ctrl" 
 		"scaleY" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off|Robot_Rig:L_lowerEyelid_Ctrl" 
 		"eyelidVisible" " -k 1 1"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Ctrl_Off|Robot_Rig:R_mouth_Ctrl" 
-		"translate" " -type \"double3\" 0.008003157733118986 -0.042876964988265535 0.01001982265163234"
+		"translate" " -type \"double3\" 0.0099485924719297236 -0.073701881550287895 0.0032255875782643915"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Ctrl_Off|Robot_Rig:R_mouth_Ctrl" 
 		"translateY" " -av"
@@ -24946,7 +24985,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Ctrl_Off|Robot_Rig:R_mouth_Ctrl" 
 		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_05_Ctrl_Off|Robot_Rig:R_mouthTop_sub_Grp|Robot_Rig:R_mouthTop_sub_Ctrl" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -0.00755318072376046 0.23442498437733511 -0.047880406710699493"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_05_Ctrl_Off|Robot_Rig:R_mouthTop_sub_Grp|Robot_Rig:R_mouthTop_sub_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_05_Ctrl_Off|Robot_Rig:R_mouthTop_sub_Grp|Robot_Rig:R_mouthTop_sub_Ctrl" 
@@ -24956,7 +24996,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_05_Ctrl_Off|Robot_Rig:R_mouthTop_sub_Grp|Robot_Rig:R_mouthTop_sub_Ctrl" 
 		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Ctrl" 
-		"translate" " -type \"double3\" 0.0076709204765303641 0.047963193226274896 6.3090328032031562e-009"
+		"translate" " -type \"double3\" 0.0036816118589260947 0.096464936149341124 -0.0027079631059208987"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Ctrl" 
 		"translateX" " -av"
@@ -24969,7 +25009,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Ctrl" 
 		"subControlVisibility" " -av -k 1 1"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthBot_Ctrl" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.0015409611446565578 -0.12340530426991261 -0.0073089239177822861"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthBot_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthBot_Ctrl" 
@@ -24991,9 +25032,15 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:upperTeeth_Off|Robot_Rig:upperTeeth_Par|Robot_Rig:upperTeeth_Ctrl" 
 		"translate" " -type \"double3\" 0 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:upperTeeth_Off|Robot_Rig:upperTeeth_Par|Robot_Rig:upperTeeth_Ctrl" 
+		"translateY" " -av"
+		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:lowerTeeth_Off|Robot_Rig:lowerTeeth_Par|Robot_Rig:lowerTeeth_Ctrl" 
+		"translate" " -type \"double3\" 0.0077907328403991755 0.088896651924103648 0.0039132260267205647"
+		
+		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:lowerTeeth_Off|Robot_Rig:lowerTeeth_Par|Robot_Rig:lowerTeeth_Ctrl" 
 		"translateY" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_05_Ctrl_Off|Robot_Rig:L_mouthTop_sub_Grp|Robot_Rig:L_mouthTop_sub_Ctrl" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.001646240508867487 0.16730656235769545 0.013160235047677852"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_05_Ctrl_Off|Robot_Rig:L_mouthTop_sub_Grp|Robot_Rig:L_mouthTop_sub_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_05_Ctrl_Off|Robot_Rig:L_mouthTop_sub_Grp|Robot_Rig:L_mouthTop_sub_Ctrl" 
@@ -25003,7 +25050,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_05_Ctrl_Off|Robot_Rig:L_mouthTop_sub_Grp|Robot_Rig:L_mouthTop_sub_Ctrl" 
 		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_Ctrl_Off|Robot_Rig:L_mouth_Ctrl" 
-		"translate" " -type \"double3\" 0.0036769700381977626 -0.044374834986614341 -0.004498379433222217"
+		"translate" " -type \"double3\" 0.0073888651089541769 -0.12894461581765465 -0.020971254602027724"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_Ctrl_Off|Robot_Rig:L_mouth_Ctrl" 
 		"translateY" " -av"
@@ -25030,7 +25077,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:jawDeform_Grp|Robot_Rig:jawDeform_Ctrl" 
 		"rotate" " -type \"double3\" 0 0 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" 0.057204804954468995 -0.046234996940356522 -0.026748045177424136"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl" 
@@ -25046,7 +25094,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl|Robot_Rig:R_eye_Ctrl" 
 		"eyeFocus" " -av -k 1 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_01_Grp|Robot_Rig:L_arm_01_Off|Robot_Rig:L_arm_01_Ctrl" 
-		"translate" " -type \"double3\" 0 0 -0.019785934800665927"
+		"translate" " -type \"double3\" 0 -0.49343851942512629 -0.019785934800665927"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_01_Grp|Robot_Rig:L_arm_01_Off|Robot_Rig:L_arm_01_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_01_Grp|Robot_Rig:L_arm_01_Off|Robot_Rig:L_arm_01_Ctrl" 
@@ -25054,7 +25102,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_01_Grp|Robot_Rig:L_arm_01_Off|Robot_Rig:L_arm_01_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_02_Grp|Robot_Rig:L_arm_02_Off|Robot_Rig:L_arm_02_Ctrl" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -2.0060808174256262 0.49119524021051575 1.6111056195407798"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_02_Grp|Robot_Rig:L_arm_02_Off|Robot_Rig:L_arm_02_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_02_Grp|Robot_Rig:L_arm_02_Off|Robot_Rig:L_arm_02_Ctrl" 
@@ -25062,7 +25111,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_02_Grp|Robot_Rig:L_arm_02_Off|Robot_Rig:L_arm_02_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_03_Grp|Robot_Rig:L_arm_03_Off|Robot_Rig:L_arm_03_Ctrl" 
-		"translate" " -type \"double3\" 0 0 0"
+		"translate" " -type \"double3\" -2.5265818376153009 0.61197287466808348 1.9928276496138437"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_03_Grp|Robot_Rig:L_arm_03_Off|Robot_Rig:L_arm_03_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_03_Grp|Robot_Rig:L_arm_03_Off|Robot_Rig:L_arm_03_Ctrl" 
@@ -25104,13 +25154,13 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_hiCrv" 
 		"scale" " -type \"double3\" 1 1 1"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ik" 
-		"translate" " -type \"double3\" 4.3047418180919745 5.4725919332002944 11.198320173083067"
+		"translate" " -type \"double3\" 0.13286147231057871 9.1348221637547127 20.633036957813943"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ik" 
-		"rotate" " -type \"double3\" -20.49373743631638 42.156203879286423 -29.113066737608371"
+		"rotate" " -type \"double3\" -132.2524580292513 -51.810700726065051 125.52640326113034"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl" 
-		"translate" " -type \"double3\" 0.16122588268003213 -0.060728314460847699 0"
+		"translate" " -type \"double3\" 0.00064709884207031498 0.057961654703841847 0"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl" 
@@ -25118,7 +25168,8 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl" 
-		"translate" " -type \"double3\" 0.30297383191202343 -0.24308318633524095 0"
+		"translate" " -type \"double3\" 0.0029904316057666747 -0.0026662127430747973 -0.0038789760968812592"
+		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl" 
 		"translateX" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl" 
@@ -25126,7 +25177,7 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl" 
 		"translateZ" " -av"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl" 
-		"translate" " -type \"double3\" 0.24248900430320841 -0.25073158717731303 -1.0579824447631836e-005"
+		"translate" " -type \"double3\" 0.002337261502965482 -0.073063874930951567 -0.0031663933523301824"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl" 
 		"translateX" " -av"
@@ -25171,516 +25222,522 @@ createNode reference -n "Robot_RigRN";
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv" 
 		"scale" " -type \"double3\" 1 1 1"
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ik" 
-		"translate" " -type \"double3\" -3.5105430525593535 5.0510027499294567 8.5630656473835547"
+		"translate" " -type \"double3\" -4.7522426997768408 8.6181455907489948 7.8295512150937743"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ik" 
-		"rotate" " -type \"double3\" -72.414824646584151 47.468569081615016 -128.43425708519479"
+		"rotate" " -type \"double3\" 148.34709681853792 59.893577566561973 145.78411291656596"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:head_Grp|Robot_Rig:R_eyebrow_Grp|Robot_Rig:R_eyebrow_Ik" 
-		"translate" " -type \"double3\" -6.8394954031389981 8.5527787423404558 8.9029172468705244"
+		"translate" " -type \"double3\" -9.0932096289114153 8.4249291472152805 8.1480725322012564"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:head_Grp|Robot_Rig:R_eyebrow_Grp|Robot_Rig:R_eyebrow_Ik" 
-		"rotate" " -type \"double3\" -45.624973336381032 28.074586559179362 -109.64164522602609"
+		"rotate" " -type \"double3\" -91.321642003799298 29.820523188246042 -104.5189495430796"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:head_Grp|Robot_Rig:L_eyebrow_Grp|Robot_Rig:L_eyebrow_Ik" 
-		"translate" " -type \"double3\" -7.4662071620111146 8.5527739457228513 8.902913252037008"
+		"translate" " -type \"double3\" -4.9809042373437213 8.1644409505451296 8.9540289138963534"
 		
 		2 "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:head_Grp|Robot_Rig:L_eyebrow_Grp|Robot_Rig:L_eyebrow_Ik" 
-		"rotate" " -type \"double3\" -45.623920171494319 28.073922648590209 -109.64267264965189"
+		"rotate" " -type \"double3\" 38.092988829721882 12.127072839378247 -107.44811848193105"
 		
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[905]" ""
+		"Robot_RigRN.placeHolderList[1135]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[906]" ""
+		"Robot_RigRN.placeHolderList[1136]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[907]" ""
+		"Robot_RigRN.placeHolderList[1137]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[908]" ""
+		"Robot_RigRN.placeHolderList[1138]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[909]" ""
+		"Robot_RigRN.placeHolderList[1139]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[910]" ""
+		"Robot_RigRN.placeHolderList[1140]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[911]" ""
+		"Robot_RigRN.placeHolderList[1141]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[912]" ""
+		"Robot_RigRN.placeHolderList[1142]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[913]" ""
+		"Robot_RigRN.placeHolderList[1143]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_thigh_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[914]" ""
+		"Robot_RigRN.placeHolderList[1144]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_thigh_Fk_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[915]" ""
+		"Robot_RigRN.placeHolderList[1145]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_thigh_Fk_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[916]" ""
+		"Robot_RigRN.placeHolderList[1146]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_thigh_Fk_Cor|Robot_Rig:R_thigh_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[917]" ""
+		"Robot_RigRN.placeHolderList[1147]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_thigh_Fk_Cor|Robot_Rig:R_thigh_Fk_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[918]" ""
+		"Robot_RigRN.placeHolderList[1148]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_thigh_Fk_Cor|Robot_Rig:R_thigh_Fk_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[919]" ""
+		"Robot_RigRN.placeHolderList[1149]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_toe_Fk_Ctrl_Grp|Robot_Rig:L_toe_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[920]" ""
+		"Robot_RigRN.placeHolderList[1150]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_toe_Fk_Ctrl_Grp|Robot_Rig:L_toe_Fk_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[921]" ""
+		"Robot_RigRN.placeHolderList[1151]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_toe_Fk_Ctrl_Grp|Robot_Rig:L_toe_Fk_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[922]" ""
+		"Robot_RigRN.placeHolderList[1152]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_heel_Fk_Ctrl_Grp|Robot_Rig:L_heel_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[923]" ""
+		"Robot_RigRN.placeHolderList[1153]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_heel_Fk_Ctrl_Grp|Robot_Rig:L_heel_Fk_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[924]" ""
+		"Robot_RigRN.placeHolderList[1154]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_heel_Fk_Ctrl_Grp|Robot_Rig:L_heel_Fk_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[925]" ""
+		"Robot_RigRN.placeHolderList[1155]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_shin_Fk_Grp|Robot_Rig:L_shin_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[926]" ""
+		"Robot_RigRN.placeHolderList[1156]" ""
+		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:L_shin_Fk_Grp|Robot_Rig:L_shin_Fk_Ctrl|Robot_Rig:L_foot_Fk_Ctrl.rotateX" 
+		"Robot_RigRN.placeHolderList[1157]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_shin_Fk_Grp|Robot_Rig:R_shin_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[927]" ""
+		"Robot_RigRN.placeHolderList[1158]" ""
+		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_shin_Fk_Grp|Robot_Rig:R_shin_Fk_Ctrl|Robot_Rig:R_foot_Fk_Ctrl.rotateX" 
+		"Robot_RigRN.placeHolderList[1159]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_toe_Fk_Grp|Robot_Rig:R_toe_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[928]" ""
+		"Robot_RigRN.placeHolderList[1160]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_toe_Fk_Grp|Robot_Rig:R_toe_Fk_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[929]" ""
+		"Robot_RigRN.placeHolderList[1161]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_toe_Fk_Grp|Robot_Rig:R_toe_Fk_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[930]" ""
+		"Robot_RigRN.placeHolderList[1162]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_heel_Fk_Grp|Robot_Rig:R_heel_Fk_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[931]" ""
+		"Robot_RigRN.placeHolderList[1163]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_heel_Fk_Grp|Robot_Rig:R_heel_Fk_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[932]" ""
+		"Robot_RigRN.placeHolderList[1164]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:pelvis_Ctrl|Robot_Rig:R_heel_Fk_Grp|Robot_Rig:R_heel_Fk_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[933]" ""
+		"Robot_RigRN.placeHolderList[1165]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[934]" ""
+		"Robot_RigRN.placeHolderList[1166]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[935]" ""
+		"Robot_RigRN.placeHolderList[1167]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[936]" ""
+		"Robot_RigRN.placeHolderList[1168]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[937]" ""
+		"Robot_RigRN.placeHolderList[1169]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[938]" ""
+		"Robot_RigRN.placeHolderList[1170]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[939]" ""
+		"Robot_RigRN.placeHolderList[1171]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[940]" ""
+		"Robot_RigRN.placeHolderList[1172]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[941]" ""
+		"Robot_RigRN.placeHolderList[1173]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:shoulderPlate_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[942]" ""
+		"Robot_RigRN.placeHolderList[1174]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[943]" ""
+		"Robot_RigRN.placeHolderList[1175]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[944]" ""
+		"Robot_RigRN.placeHolderList[1176]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[945]" ""
+		"Robot_RigRN.placeHolderList[1177]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl|Robot_Rig:L_armBall_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[946]" ""
+		"Robot_RigRN.placeHolderList[1178]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:L_shoulder_Ctrl|Robot_Rig:L_armBall_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[947]" ""
+		"Robot_RigRN.placeHolderList[1179]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[948]" ""
+		"Robot_RigRN.placeHolderList[1180]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[949]" ""
+		"Robot_RigRN.placeHolderList[1181]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[950]" ""
+		"Robot_RigRN.placeHolderList[1182]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl|Robot_Rig:R_armBall_Ctrl_Cor|Robot_Rig:R_armBall_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[951]" ""
+		"Robot_RigRN.placeHolderList[1183]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl|Robot_Rig:R_armBall_Ctrl_Cor|Robot_Rig:R_armBall_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[952]" ""
+		"Robot_RigRN.placeHolderList[1184]" ""
 		5 3 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl|Robot_Rig:R_armBall_Ctrl_Cor|Robot_Rig:R_armBall_Ctrl.blendParent1" 
-		"Robot_RigRN.placeHolderList[953]" ""
+		"Robot_RigRN.placeHolderList[1185]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:R_shoulder_Ctrl_Cor|Robot_Rig:R_shoulder_Ctrl|Robot_Rig:R_armBall_Ctrl_Cor|Robot_Rig:R_armBall_Ctrl.blendParent1" 
-		"Robot_RigRN.placeHolderList[954]" ""
+		"Robot_RigRN.placeHolderList[1186]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:antenna_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[955]" ""
+		"Robot_RigRN.placeHolderList[1187]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:antenna_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[956]" ""
+		"Robot_RigRN.placeHolderList[1188]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:root_Ctrl|Robot_Rig:body_Ctrl|Robot_Rig:antenna_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[957]" ""
+		"Robot_RigRN.placeHolderList[1189]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_kneePV_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[958]" ""
+		"Robot_RigRN.placeHolderList[1190]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_kneePV_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[959]" ""
+		"Robot_RigRN.placeHolderList[1191]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_kneePV_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[960]" ""
+		"Robot_RigRN.placeHolderList[1192]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_kneePV_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[961]" ""
+		"Robot_RigRN.placeHolderList[1193]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_kneePV_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[962]" ""
+		"Robot_RigRN.placeHolderList[1194]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_kneePV_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[963]" ""
+		"Robot_RigRN.placeHolderList[1195]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[964]" ""
+		"Robot_RigRN.placeHolderList[1196]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[965]" ""
+		"Robot_RigRN.placeHolderList[1197]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[966]" ""
+		"Robot_RigRN.placeHolderList[1198]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[967]" ""
+		"Robot_RigRN.placeHolderList[1199]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[968]" ""
+		"Robot_RigRN.placeHolderList[1200]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:R_foot_Ik_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[969]" ""
+		"Robot_RigRN.placeHolderList[1201]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[970]" ""
+		"Robot_RigRN.placeHolderList[1202]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[971]" ""
+		"Robot_RigRN.placeHolderList[1203]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[972]" ""
+		"Robot_RigRN.placeHolderList[1204]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[973]" ""
+		"Robot_RigRN.placeHolderList[1205]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[974]" ""
+		"Robot_RigRN.placeHolderList[1206]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:L_foot_Ik_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[975]" ""
+		"Robot_RigRN.placeHolderList[1207]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[976]" ""
+		"Robot_RigRN.placeHolderList[1208]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[977]" ""
+		"Robot_RigRN.placeHolderList[1209]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[978]" ""
+		"Robot_RigRN.placeHolderList[1210]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[979]" ""
+		"Robot_RigRN.placeHolderList[1211]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[980]" ""
+		"Robot_RigRN.placeHolderList[1212]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[981]" ""
+		"Robot_RigRN.placeHolderList[1213]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[982]" ""
+		"Robot_RigRN.placeHolderList[1214]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[983]" ""
+		"Robot_RigRN.placeHolderList[1215]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[984]" ""
+		"Robot_RigRN.placeHolderList[1216]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[985]" ""
+		"Robot_RigRN.placeHolderList[1217]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[986]" ""
+		"Robot_RigRN.placeHolderList[1218]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[987]" ""
+		"Robot_RigRN.placeHolderList[1219]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[988]" ""
+		"Robot_RigRN.placeHolderList[1220]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl|Robot_Rig:R_index_02_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[989]" ""
+		"Robot_RigRN.placeHolderList[1221]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl|Robot_Rig:R_index_02_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[990]" ""
+		"Robot_RigRN.placeHolderList[1222]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl|Robot_Rig:R_index_02_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[991]" ""
+		"Robot_RigRN.placeHolderList[1223]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl|Robot_Rig:R_index_02_Ctrl|Robot_Rig:R_index_03_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[992]" ""
+		"Robot_RigRN.placeHolderList[1224]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl|Robot_Rig:R_index_02_Ctrl|Robot_Rig:R_index_03_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[993]" ""
+		"Robot_RigRN.placeHolderList[1225]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:R_index_01_Ctrl|Robot_Rig:R_index_02_Ctrl|Robot_Rig:R_index_03_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[994]" ""
+		"Robot_RigRN.placeHolderList[1226]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[995]" ""
+		"Robot_RigRN.placeHolderList[1227]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[996]" ""
+		"Robot_RigRN.placeHolderList[1228]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[997]" ""
+		"Robot_RigRN.placeHolderList[1229]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl|Robot_Rig:R_ring_02_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[998]" ""
+		"Robot_RigRN.placeHolderList[1230]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl|Robot_Rig:R_ring_02_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[999]" ""
+		"Robot_RigRN.placeHolderList[1231]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl|Robot_Rig:R_ring_02_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1000]" ""
+		"Robot_RigRN.placeHolderList[1232]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl|Robot_Rig:R_ring_02_Ctrl|Robot_Rig:R_ring_03_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1001]" ""
+		"Robot_RigRN.placeHolderList[1233]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl|Robot_Rig:R_ring_02_Ctrl|Robot_Rig:R_ring_03_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1002]" ""
+		"Robot_RigRN.placeHolderList[1234]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:R_ring_01_Ctrl|Robot_Rig:R_ring_02_Ctrl|Robot_Rig:R_ring_03_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1003]" ""
+		"Robot_RigRN.placeHolderList[1235]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1004]" ""
+		"Robot_RigRN.placeHolderList[1236]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1005]" ""
+		"Robot_RigRN.placeHolderList[1237]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1006]" ""
+		"Robot_RigRN.placeHolderList[1238]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1007]" ""
+		"Robot_RigRN.placeHolderList[1239]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl|Robot_Rig:R_thumb_02_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1008]" ""
+		"Robot_RigRN.placeHolderList[1240]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl|Robot_Rig:R_thumb_02_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1009]" ""
+		"Robot_RigRN.placeHolderList[1241]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl|Robot_Rig:R_thumb_02_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1010]" ""
+		"Robot_RigRN.placeHolderList[1242]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl|Robot_Rig:R_thumb_02_Ctrl|Robot_Rig:R_thumb_03_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1011]" ""
+		"Robot_RigRN.placeHolderList[1243]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl|Robot_Rig:R_thumb_02_Ctrl|Robot_Rig:R_thumb_03_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1012]" ""
+		"Robot_RigRN.placeHolderList[1244]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_hand_Ctrl_Grp|Robot_Rig:R_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:R_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:R_thumb_01_Ctrl|Robot_Rig:R_thumb_02_Ctrl|Robot_Rig:R_thumb_03_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1013]" ""
+		"Robot_RigRN.placeHolderList[1245]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl_Grp|Robot_Rig:R_forearm_Ctrl|Robot_Rig:R_armSettings_Ctrl.IkFkSwitch" 
-		"Robot_RigRN.placeHolderList[1014]" ""
+		"Robot_RigRN.placeHolderList[1246]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1015]" ""
+		"Robot_RigRN.placeHolderList[1247]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1016]" ""
+		"Robot_RigRN.placeHolderList[1248]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1017]" ""
+		"Robot_RigRN.placeHolderList[1249]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1018]" ""
+		"Robot_RigRN.placeHolderList[1250]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1019]" ""
+		"Robot_RigRN.placeHolderList[1251]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1020]" ""
+		"Robot_RigRN.placeHolderList[1252]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1021]" ""
+		"Robot_RigRN.placeHolderList[1253]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1022]" ""
+		"Robot_RigRN.placeHolderList[1254]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1023]" ""
+		"Robot_RigRN.placeHolderList[1255]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1024]" ""
+		"Robot_RigRN.placeHolderList[1256]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1025]" ""
+		"Robot_RigRN.placeHolderList[1257]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1026]" ""
+		"Robot_RigRN.placeHolderList[1258]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1027]" ""
+		"Robot_RigRN.placeHolderList[1259]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1028]" ""
+		"Robot_RigRN.placeHolderList[1260]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1029]" ""
+		"Robot_RigRN.placeHolderList[1261]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1030]" ""
+		"Robot_RigRN.placeHolderList[1262]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl|Robot_Rig:L_ring_03_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1031]" ""
+		"Robot_RigRN.placeHolderList[1263]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl|Robot_Rig:L_ring_03_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1032]" ""
+		"Robot_RigRN.placeHolderList[1264]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_ring_Ctrl_Off|Robot_Rig:L_ring_01_Ctrl|Robot_Rig:L_ring_02_Ctrl|Robot_Rig:L_ring_03_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1033]" ""
+		"Robot_RigRN.placeHolderList[1265]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1034]" ""
+		"Robot_RigRN.placeHolderList[1266]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1035]" ""
+		"Robot_RigRN.placeHolderList[1267]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1036]" ""
+		"Robot_RigRN.placeHolderList[1268]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1037]" ""
+		"Robot_RigRN.placeHolderList[1269]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1038]" ""
+		"Robot_RigRN.placeHolderList[1270]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1039]" ""
+		"Robot_RigRN.placeHolderList[1271]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1040]" ""
+		"Robot_RigRN.placeHolderList[1272]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl|Robot_Rig:L_thumb_03_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1041]" ""
+		"Robot_RigRN.placeHolderList[1273]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl|Robot_Rig:L_thumb_03_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1042]" ""
+		"Robot_RigRN.placeHolderList[1274]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:l_palm_Ctrl_Off|Robot_Rig:L_handPalm_Ctrl|Robot_Rig:l_thumb_Ctrl_Off|Robot_Rig:L_thumb_01_Ctrl|Robot_Rig:L_thumb_02_Ctrl|Robot_Rig:L_thumb_03_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1043]" ""
+		"Robot_RigRN.placeHolderList[1275]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1044]" ""
+		"Robot_RigRN.placeHolderList[1276]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1045]" ""
+		"Robot_RigRN.placeHolderList[1277]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1046]" ""
+		"Robot_RigRN.placeHolderList[1278]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1047]" ""
+		"Robot_RigRN.placeHolderList[1279]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1048]" ""
+		"Robot_RigRN.placeHolderList[1280]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1049]" ""
+		"Robot_RigRN.placeHolderList[1281]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl|Robot_Rig:L_index_03_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1050]" ""
+		"Robot_RigRN.placeHolderList[1282]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl|Robot_Rig:L_index_03_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1051]" ""
+		"Robot_RigRN.placeHolderList[1283]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_hand_Ctrl_Grp|Robot_Rig:L_hand_Ctrl|Robot_Rig:L_index_Ctrl_Off|Robot_Rig:L_index_01_Ctrl|Robot_Rig:L_index_02_Ctrl|Robot_Rig:L_index_03_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1052]" ""
+		"Robot_RigRN.placeHolderList[1284]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl_Grp|Robot_Rig:L_forearm_Ctrl|Robot_Rig:L_armSettings_Ctrl.IkFkSwitch" 
-		"Robot_RigRN.placeHolderList[1053]" ""
+		"Robot_RigRN.placeHolderList[1285]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1054]" ""
+		"Robot_RigRN.placeHolderList[1286]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1055]" ""
+		"Robot_RigRN.placeHolderList[1287]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1056]" ""
+		"Robot_RigRN.placeHolderList[1288]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl.rotateX" 
-		"Robot_RigRN.placeHolderList[1057]" ""
+		"Robot_RigRN.placeHolderList[1289]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl.rotateY" 
-		"Robot_RigRN.placeHolderList[1058]" ""
+		"Robot_RigRN.placeHolderList[1290]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1059]" ""
+		"Robot_RigRN.placeHolderList[1291]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1060]" ""
+		"Robot_RigRN.placeHolderList[1292]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1061]" ""
+		"Robot_RigRN.placeHolderList[1293]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1062]" ""
+		"Robot_RigRN.placeHolderList[1294]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off1|Robot_Rig:L_lowerEyelid_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1063]" ""
+		"Robot_RigRN.placeHolderList[1295]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1064]" ""
+		"Robot_RigRN.placeHolderList[1296]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1065]" ""
+		"Robot_RigRN.placeHolderList[1297]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1066]" ""
+		"Robot_RigRN.placeHolderList[1298]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:L_eyeSocket_Off|Robot_Rig:L_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off1|Robot_Rig:R_upperEyelid_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1067]" ""
+		"Robot_RigRN.placeHolderList[1299]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off|Robot_Rig:R_upperEyelid_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1068]" ""
+		"Robot_RigRN.placeHolderList[1300]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_upperEyelid_Ctrl_Off|Robot_Rig:R_upperEyelid_Ctrl.rotateZ" 
-		"Robot_RigRN.placeHolderList[1069]" ""
+		"Robot_RigRN.placeHolderList[1301]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off|Robot_Rig:L_lowerEyelid_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1070]" ""
+		"Robot_RigRN.placeHolderList[1302]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:head_Ctrl|Robot_Rig:R_eyeSocket_Off|Robot_Rig:R_eyeSocket_Ctrl|Robot_Rig:R_lowerEyelid_Ctrl_Off|Robot_Rig:L_lowerEyelid_Ctrl.scaleY" 
-		"Robot_RigRN.placeHolderList[1071]" ""
+		"Robot_RigRN.placeHolderList[1303]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Ctrl_Off|Robot_Rig:R_mouth_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1072]" ""
+		"Robot_RigRN.placeHolderList[1304]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Ctrl_Off|Robot_Rig:R_mouth_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1073]" ""
+		"Robot_RigRN.placeHolderList[1305]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Ctrl_Off|Robot_Rig:R_mouth_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1074]" ""
+		"Robot_RigRN.placeHolderList[1306]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_05_Ctrl_Off|Robot_Rig:R_mouthTop_sub_Grp|Robot_Rig:R_mouthTop_sub_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1075]" ""
+		"Robot_RigRN.placeHolderList[1307]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_05_Ctrl_Off|Robot_Rig:R_mouthTop_sub_Grp|Robot_Rig:R_mouthTop_sub_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1076]" ""
+		"Robot_RigRN.placeHolderList[1308]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_05_Ctrl_Off|Robot_Rig:R_mouthTop_sub_Grp|Robot_Rig:R_mouthTop_sub_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1077]" ""
+		"Robot_RigRN.placeHolderList[1309]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1078]" ""
+		"Robot_RigRN.placeHolderList[1310]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1079]" ""
+		"Robot_RigRN.placeHolderList[1311]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1080]" ""
+		"Robot_RigRN.placeHolderList[1312]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthBot_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1081]" ""
+		"Robot_RigRN.placeHolderList[1313]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthBot_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1082]" ""
+		"Robot_RigRN.placeHolderList[1314]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthBot_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1083]" ""
+		"Robot_RigRN.placeHolderList[1315]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Grp|Robot_Rig:mouthTop_sub_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1084]" ""
+		"Robot_RigRN.placeHolderList[1316]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Grp|Robot_Rig:mouthTop_sub_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1085]" ""
+		"Robot_RigRN.placeHolderList[1317]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:mouthTop_Grp|Robot_Rig:mouthTop_sub_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1086]" ""
+		"Robot_RigRN.placeHolderList[1318]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:upperTeeth_Off|Robot_Rig:upperTeeth_Par|Robot_Rig:upperTeeth_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1087]" ""
+		"Robot_RigRN.placeHolderList[1319]" ""
+		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:R_mouth_Mid_Ctrl_Off|Robot_Rig:lowerTeeth_Off|Robot_Rig:lowerTeeth_Par|Robot_Rig:lowerTeeth_Ctrl.translateY" 
+		"Robot_RigRN.placeHolderList[1320]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_05_Ctrl_Off|Robot_Rig:L_mouthTop_sub_Grp|Robot_Rig:L_mouthTop_sub_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1088]" ""
+		"Robot_RigRN.placeHolderList[1321]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_05_Ctrl_Off|Robot_Rig:L_mouthTop_sub_Grp|Robot_Rig:L_mouthTop_sub_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1089]" ""
+		"Robot_RigRN.placeHolderList[1322]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_05_Ctrl_Off|Robot_Rig:L_mouthTop_sub_Grp|Robot_Rig:L_mouthTop_sub_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1090]" ""
+		"Robot_RigRN.placeHolderList[1323]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_Ctrl_Off|Robot_Rig:L_mouth_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1091]" ""
+		"Robot_RigRN.placeHolderList[1324]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_Ctrl_Off|Robot_Rig:L_mouth_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1092]" ""
+		"Robot_RigRN.placeHolderList[1325]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Grp|Robot_Rig:L_mouth_Ctrl_Off|Robot_Rig:L_mouth_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1093]" ""
+		"Robot_RigRN.placeHolderList[1326]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Off|Robot_Rig:mouth_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1094]" ""
+		"Robot_RigRN.placeHolderList[1327]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Off|Robot_Rig:mouth_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1095]" ""
+		"Robot_RigRN.placeHolderList[1328]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:head_Ctrl_Grp|Robot_Rig:mouth_Ctrl_Off|Robot_Rig:mouth_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1096]" ""
+		"Robot_RigRN.placeHolderList[1329]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1097]" ""
+		"Robot_RigRN.placeHolderList[1330]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1098]" ""
+		"Robot_RigRN.placeHolderList[1331]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1099]" ""
+		"Robot_RigRN.placeHolderList[1332]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl|Robot_Rig:L_eye_Ctrl.eyeFocus" 
-		"Robot_RigRN.placeHolderList[1100]" ""
+		"Robot_RigRN.placeHolderList[1333]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robot_Ctrl|Robot_Rig:eyes_Ctrl_Par|Robot_Rig:eyes_Ctrl|Robot_Rig:R_eye_Ctrl.eyeFocus" 
-		"Robot_RigRN.placeHolderList[1101]" ""
+		"Robot_RigRN.placeHolderList[1334]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_01_Grp|Robot_Rig:L_arm_01_Off|Robot_Rig:L_arm_01_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1102]" ""
+		"Robot_RigRN.placeHolderList[1335]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_01_Grp|Robot_Rig:L_arm_01_Off|Robot_Rig:L_arm_01_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1103]" ""
+		"Robot_RigRN.placeHolderList[1336]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_02_Grp|Robot_Rig:L_arm_02_Off|Robot_Rig:L_arm_02_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1104]" ""
+		"Robot_RigRN.placeHolderList[1337]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_02_Grp|Robot_Rig:L_arm_02_Off|Robot_Rig:L_arm_02_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1105]" ""
+		"Robot_RigRN.placeHolderList[1338]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_02_Grp|Robot_Rig:L_arm_02_Off|Robot_Rig:L_arm_02_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1106]" ""
+		"Robot_RigRN.placeHolderList[1339]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_03_Grp|Robot_Rig:L_arm_03_Off|Robot_Rig:L_arm_03_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1107]" ""
+		"Robot_RigRN.placeHolderList[1340]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_03_Grp|Robot_Rig:L_arm_03_Off|Robot_Rig:L_arm_03_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1108]" ""
+		"Robot_RigRN.placeHolderList[1341]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Ctrl_Grp|Robot_Rig:L_arm_Ctrl_03_Grp|Robot_Rig:L_arm_03_Off|Robot_Rig:L_arm_03_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1109]" ""
+		"Robot_RigRN.placeHolderList[1342]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Crv.visibility" 
-		"Robot_RigRN.placeHolderList[1110]" ""
+		"Robot_RigRN.placeHolderList[1343]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Crv.translateX" 
-		"Robot_RigRN.placeHolderList[1111]" ""
+		"Robot_RigRN.placeHolderList[1344]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Crv.translateY" 
-		"Robot_RigRN.placeHolderList[1112]" ""
+		"Robot_RigRN.placeHolderList[1345]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Crv.translateZ" 
-		"Robot_RigRN.placeHolderList[1113]" ""
+		"Robot_RigRN.placeHolderList[1346]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Crv.rotateX" 
-		"Robot_RigRN.placeHolderList[1114]" ""
+		"Robot_RigRN.placeHolderList[1347]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Crv.rotateY" 
-		"Robot_RigRN.placeHolderList[1115]" ""
+		"Robot_RigRN.placeHolderList[1348]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_Crv.rotateZ" 
-		"Robot_RigRN.placeHolderList[1116]" ""
+		"Robot_RigRN.placeHolderList[1349]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_hiCrv.visibility" 
-		"Robot_RigRN.placeHolderList[1117]" ""
+		"Robot_RigRN.placeHolderList[1350]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_hiCrv.translateX" 
-		"Robot_RigRN.placeHolderList[1118]" ""
+		"Robot_RigRN.placeHolderList[1351]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_hiCrv.translateY" 
-		"Robot_RigRN.placeHolderList[1119]" ""
+		"Robot_RigRN.placeHolderList[1352]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_hiCrv.rotateX" 
-		"Robot_RigRN.placeHolderList[1120]" ""
+		"Robot_RigRN.placeHolderList[1353]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_hiCrv.rotateY" 
-		"Robot_RigRN.placeHolderList[1121]" ""
+		"Robot_RigRN.placeHolderList[1354]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:L_arm_Grp|Robot_Rig:L_armPipe_Grp|Robot_Rig:L_arm_hiCrv.rotateZ" 
-		"Robot_RigRN.placeHolderList[1122]" ""
+		"Robot_RigRN.placeHolderList[1355]" ""
 		5 0 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:settings_Grp|Robot_Rig:settings_Ctrl.ControlVisibility" 
 		"|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl.visibility" 
-		"Robot_RigRN.placeHolderList[1123]" "Robot_RigRN.placeHolderList[1124]" ""
+		"Robot_RigRN.placeHolderList[1356]" "Robot_RigRN.placeHolderList[1357]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1125]" ""
+		"Robot_RigRN.placeHolderList[1358]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1126]" ""
+		"Robot_RigRN.placeHolderList[1359]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_01_Grp|Robot_Rig:R_arm_Ctrl_01_Off|Robot_Rig:R_arm_01_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1127]" ""
+		"Robot_RigRN.placeHolderList[1360]" ""
 		5 0 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:settings_Grp|Robot_Rig:settings_Ctrl.ControlVisibility" 
 		"|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl.visibility" 
-		"Robot_RigRN.placeHolderList[1128]" "Robot_RigRN.placeHolderList[1129]" ""
+		"Robot_RigRN.placeHolderList[1361]" "Robot_RigRN.placeHolderList[1362]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1130]" ""
+		"Robot_RigRN.placeHolderList[1363]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1131]" ""
+		"Robot_RigRN.placeHolderList[1364]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_02_Grp|Robot_Rig:R_arm_Ctrl_02_Off|Robot_Rig:R_arm_02_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1132]" ""
+		"Robot_RigRN.placeHolderList[1365]" ""
 		5 0 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:settings_Grp|Robot_Rig:settings_Ctrl.ControlVisibility" 
 		"|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl.visibility" 
-		"Robot_RigRN.placeHolderList[1133]" "Robot_RigRN.placeHolderList[1134]" ""
+		"Robot_RigRN.placeHolderList[1366]" "Robot_RigRN.placeHolderList[1367]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl.translateX" 
-		"Robot_RigRN.placeHolderList[1135]" ""
+		"Robot_RigRN.placeHolderList[1368]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl.translateY" 
-		"Robot_RigRN.placeHolderList[1136]" ""
+		"Robot_RigRN.placeHolderList[1369]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Ctrl_Grp|Robot_Rig:R_arm_Ctrl_03_Grp|Robot_Rig:R_arm_Ctrl_03_Off|Robot_Rig:R_arm_03_Ctrl.translateZ" 
-		"Robot_RigRN.placeHolderList[1137]" ""
+		"Robot_RigRN.placeHolderList[1370]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Crv.visibility" 
-		"Robot_RigRN.placeHolderList[1138]" ""
+		"Robot_RigRN.placeHolderList[1371]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Crv.translateX" 
-		"Robot_RigRN.placeHolderList[1139]" ""
+		"Robot_RigRN.placeHolderList[1372]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Crv.translateY" 
-		"Robot_RigRN.placeHolderList[1140]" ""
+		"Robot_RigRN.placeHolderList[1373]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Crv.translateZ" 
-		"Robot_RigRN.placeHolderList[1141]" ""
+		"Robot_RigRN.placeHolderList[1374]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Crv.rotateX" 
-		"Robot_RigRN.placeHolderList[1142]" ""
+		"Robot_RigRN.placeHolderList[1375]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Crv.rotateY" 
-		"Robot_RigRN.placeHolderList[1143]" ""
+		"Robot_RigRN.placeHolderList[1376]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_Crv.rotateZ" 
-		"Robot_RigRN.placeHolderList[1144]" ""
+		"Robot_RigRN.placeHolderList[1377]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv.visibility" 
-		"Robot_RigRN.placeHolderList[1145]" ""
+		"Robot_RigRN.placeHolderList[1378]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv.translateX" 
-		"Robot_RigRN.placeHolderList[1146]" ""
+		"Robot_RigRN.placeHolderList[1379]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv.translateY" 
-		"Robot_RigRN.placeHolderList[1147]" ""
+		"Robot_RigRN.placeHolderList[1380]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv.translateZ" 
-		"Robot_RigRN.placeHolderList[1148]" ""
+		"Robot_RigRN.placeHolderList[1381]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv.rotateX" 
-		"Robot_RigRN.placeHolderList[1149]" ""
+		"Robot_RigRN.placeHolderList[1382]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv.rotateY" 
-		"Robot_RigRN.placeHolderList[1150]" ""
+		"Robot_RigRN.placeHolderList[1383]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:robotRig_Grp|Robot_Rig:R_arm_Grp|Robot_Rig:R_armPipe_Grp|Robot_Rig:R_arm_hiCrv.rotateZ" 
-		"Robot_RigRN.placeHolderList[1151]" ""
+		"Robot_RigRN.placeHolderList[1384]" ""
 		5 4 "Robot_RigRN" "|Robot_Rig:Robot_Grp|Robot_Rig:settings_Grp|Robot_Rig:settings_Ctrl.DebuggingVisibility" 
-		"Robot_RigRN.placeHolderList[1152]" "";
+		"Robot_RigRN.placeHolderList[1385]" "";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 createNode animCurveTA -n "L_foot_Ik_Ctrl_rotateX";
@@ -28196,7 +28253,7 @@ createNode animCurveTA -n "L_forearm_Ctrl_rotateZ";
 	rename -uid "B6A2BF39-438C-D5DC-981D-5B8C590B2F5F";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 3 ".ktv[0:2]"  61 0 119.5 21.232134633276502 136.12 -9.5368957989419574;
+	setAttr -s 3 ".ktv[0:2]"  61 0 119.5 21.232134633276502 139 -39.803730962619063;
 createNode animCurveTL -n "L_hand_Ctrl_translateX";
 	rename -uid "63B7578C-4ADA-614E-8FD0-8DA60071064E";
 	setAttr ".tan" 18;
@@ -29249,24 +29306,24 @@ createNode animCurveTL -n "antenna_Ctrl_translateX";
 	setAttr ".wgt" no;
 	setAttr -s 11 ".ktv[0:10]"  61 -0.037390115480044311 70 0.027950337964885545
 		 79 -0.040623872728831271 88 0.0088017057059150521 97 -0.043857629977618232 106 -0.5441535218112673
-		 115 -0.5761478664422871 124 -0.52672228800754084 133 -0.57938162369107404 142 -0.52995604525632778
-		 151 -0.58261538093986109;
+		 115 -0.5761478664422871 124 -1.3283365525695081 133 -1.4267103855727241 142 -1.2018372825077437
+		 151 -1.2544966181912769;
 createNode animCurveTL -n "antenna_Ctrl_translateY";
 	rename -uid "E0268178-4B73-A2B1-46D7-258C05B2FDCC";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 11 ".ktv[0:10]"  61 -1.2184775331725919 70 0.82715221926006288
 		 79 -1.3840997486388729 88 0.76052850677328621 97 -1.5497219641051538 106 0.70342443827786016
-		 115 -1.7153441795714348 124 0.63724731594235295 133 -1.8809663950377158 142 0.61559965131566097
-		 151 -2.0465886105039965;
+		 115 -1.7153441795714348 124 0.22720337814511921 133 -2.8125108921299988 142 -0.05628158593575483
+		 151 -2.7184698477554123;
 createNode animCurveTL -n "antenna_Ctrl_translateZ";
 	rename -uid "758CE7C7-430E-B473-38E7-76A2B3F1D854";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 11 ".ktv[0:10]"  61 -4.1195110944122639 70 -2.0360347078714072
 		 79 -4.2606452753071649 88 -2.0873120217533172 97 -4.4017794562020658 106 -2.072386887218169
-		 115 -4.5429136370969667 124 -2.1136256264949607 133 -4.6840478179918676 142 -2.1587767734968022
-		 151 -4.8251819988867686;
+		 115 -4.5429136370969667 124 -2.2133305316958438 133 -4.8543469933609202 142 -2.830658010748218
+		 151 -5.4970632361381844;
 createNode reference -n "sharedReferenceNode1";
 	rename -uid "3F13468F-497B-9207-964D-739B74F08F65";
 	setAttr ".ed" -type "dataReferenceEdits" 
@@ -29310,15 +29367,33 @@ createNode animCurveTA -n "R_upperEyelid_Ctrl_rotateZ1";
 	rename -uid "338AB6FD-49C1-C3D6-597C-54A798EA2E0A";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  139 12.784827517434682;
+	setAttr ".ktv[0]"  139 19.286516568085236;
 createNode animCurveTL -n "upperTeeth_Ctrl_translateY";
 	rename -uid "9EE5D88C-4F18-1F3A-8236-8C9C469659D7";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr ".ktv[0]"  61 0;
+createNode animCurveTA -n "R_foot_Fk_Ctrl_rotateX";
+	rename -uid "8406B9FC-4294-9C16-61F8-388BCC70786A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr -s 9 ".ktv[0:8]"  61 0 71 -3.4367718017519135 82 4.3017343360687788
+		 92 0.86496253431686498 103 8.6034686721375575 113 5.1666968703856435 124 12.905203008206335
+		 134 9.4684312064544223 145 17.206937344275115;
+createNode animCurveTA -n "L_foot_Fk_Ctrl_rotateX";
+	rename -uid "B30F242A-4A9D-C0A4-8601-2784F8AC84F7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr -s 7 ".ktv[0:6]"  61 0 71 17.899328346890577 81 2.0625022578701633
+		 91 19.961830604760742 101 4.1250045157403266 111 22.024332862630907 124 19.131959908841662;
+createNode animCurveTL -n "lowerTeeth_Ctrl_translateY";
+	rename -uid "28F8C7C8-4D8A-A770-45C4-A4989362110E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr -s 2 ".ktv[0:1]"  61 0.048554856986271974 139 0.088896651924103648;
 select -ne :time1;
-	setAttr ".o" 61;
-	setAttr ".unw" 61;
+	setAttr ".o" 139;
+	setAttr ".unw" 139;
 select -ne :hardwareRenderingGlobals;
 	setAttr ".otfna" -type "stringArray" 22 "NURBS Curves" "NURBS Surfaces" "Polygons" "Subdiv Surface" "Particles" "Particle Instance" "Fluids" "Strokes" "Image Planes" "UI" "Lights" "Cameras" "Locators" "Joints" "IK Handles" "Deformers" "Motion Trails" "Components" "Hair Systems" "Follicles" "Misc. UI" "Ornaments"  ;
 	setAttr ".otfva" -type "Int32Array" 22 0 1 1 1 1 1
@@ -29336,6 +29411,7 @@ select -ne :defaultRenderUtilityList1;
 	setAttr -s 136 ".u";
 select -ne :defaultRenderingList1;
 	setAttr -s 2 ".r";
+select -ne :lightList1;
 select -ne :defaultTextureList1;
 	setAttr -s 2 ".tx";
 select -ne :initialShadingGroup;
@@ -29349,256 +29425,260 @@ select -ne :defaultResolution;
 	setAttr ".h" 1080;
 	setAttr ".pa" 1;
 	setAttr ".dar" 1.7777777910232544;
+select -ne :defaultLightSet;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
 select -ne :ikSystem;
-	setAttr -s 4 ".sol";
-connectAttr "root_Ctrl_translateX.o" "Robot_RigRN.phl[905]";
-connectAttr "root_Ctrl_translateY.o" "Robot_RigRN.phl[906]";
-connectAttr "root_Ctrl_translateZ.o" "Robot_RigRN.phl[907]";
-connectAttr "root_Ctrl_rotateX.o" "Robot_RigRN.phl[908]";
-connectAttr "root_Ctrl_rotateY.o" "Robot_RigRN.phl[909]";
-connectAttr "root_Ctrl_rotateZ.o" "Robot_RigRN.phl[910]";
-connectAttr "pelvis_Ctrl_rotateY.o" "Robot_RigRN.phl[911]";
-connectAttr "pelvis_Ctrl_rotateX.o" "Robot_RigRN.phl[912]";
-connectAttr "pelvis_Ctrl_rotateZ.o" "Robot_RigRN.phl[913]";
-connectAttr "L_thigh_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[914]";
-connectAttr "L_thigh_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[915]";
-connectAttr "L_thigh_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[916]";
-connectAttr "R_thigh_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[917]";
-connectAttr "R_thigh_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[918]";
-connectAttr "R_thigh_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[919]";
-connectAttr "L_toe_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[920]";
-connectAttr "L_toe_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[921]";
-connectAttr "L_toe_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[922]";
-connectAttr "L_heel_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[923]";
-connectAttr "L_heel_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[924]";
-connectAttr "L_heel_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[925]";
-connectAttr "L_shin_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[926]";
-connectAttr "R_shin_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[927]";
-connectAttr "R_toe_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[928]";
-connectAttr "R_toe_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[929]";
-connectAttr "R_toe_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[930]";
-connectAttr "R_heel_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[931]";
-connectAttr "R_heel_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[932]";
-connectAttr "R_heel_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[933]";
-connectAttr "body_Ctrl_rotateY.o" "Robot_RigRN.phl[934]";
-connectAttr "body_Ctrl_rotateX.o" "Robot_RigRN.phl[935]";
-connectAttr "body_Ctrl_rotateZ.o" "Robot_RigRN.phl[936]";
-connectAttr "shoulderPlate_Ctrl_translateX.o" "Robot_RigRN.phl[937]";
-connectAttr "shoulderPlate_Ctrl_translateY.o" "Robot_RigRN.phl[938]";
-connectAttr "shoulderPlate_Ctrl_translateZ.o" "Robot_RigRN.phl[939]";
-connectAttr "shoulderPlate_Ctrl_rotateX.o" "Robot_RigRN.phl[940]";
-connectAttr "shoulderPlate_Ctrl_rotateY.o" "Robot_RigRN.phl[941]";
-connectAttr "shoulderPlate_Ctrl_rotateZ.o" "Robot_RigRN.phl[942]";
-connectAttr "L_shoulder_Ctrl_rotateX.o" "Robot_RigRN.phl[943]";
-connectAttr "L_shoulder_Ctrl_rotateY.o" "Robot_RigRN.phl[944]";
-connectAttr "L_shoulder_Ctrl_rotateZ.o" "Robot_RigRN.phl[945]";
-connectAttr "L_armBall_Ctrl_translateY.o" "Robot_RigRN.phl[946]";
-connectAttr "L_armBall_Ctrl_rotateZ.o" "Robot_RigRN.phl[947]";
-connectAttr "R_shoulder_Ctrl_rotateX.o" "Robot_RigRN.phl[948]";
-connectAttr "R_shoulder_Ctrl_rotateY.o" "Robot_RigRN.phl[949]";
-connectAttr "R_shoulder_Ctrl_rotateZ.o" "Robot_RigRN.phl[950]";
-connectAttr "pairBlend1.oty" "Robot_RigRN.phl[951]";
-connectAttr "pairBlend1.orz" "Robot_RigRN.phl[952]";
-connectAttr "Robot_RigRN.phl[953]" "pairBlend1.w";
-connectAttr "R_armBall_Ctrl_blendParent1.o" "Robot_RigRN.phl[954]";
-connectAttr "antenna_Ctrl_translateX.o" "Robot_RigRN.phl[955]";
-connectAttr "antenna_Ctrl_translateY.o" "Robot_RigRN.phl[956]";
-connectAttr "antenna_Ctrl_translateZ.o" "Robot_RigRN.phl[957]";
-connectAttr "L_kneePV_Ctrl_translateX.o" "Robot_RigRN.phl[958]";
-connectAttr "L_kneePV_Ctrl_translateY.o" "Robot_RigRN.phl[959]";
-connectAttr "L_kneePV_Ctrl_translateZ.o" "Robot_RigRN.phl[960]";
-connectAttr "R_kneePV_Ctrl_translateX.o" "Robot_RigRN.phl[961]";
-connectAttr "R_kneePV_Ctrl_translateY.o" "Robot_RigRN.phl[962]";
-connectAttr "R_kneePV_Ctrl_translateZ.o" "Robot_RigRN.phl[963]";
-connectAttr "R_foot_Ik_Ctrl_translateX.o" "Robot_RigRN.phl[964]";
-connectAttr "R_foot_Ik_Ctrl_translateY.o" "Robot_RigRN.phl[965]";
-connectAttr "R_foot_Ik_Ctrl_translateZ.o" "Robot_RigRN.phl[966]";
-connectAttr "R_foot_Ik_Ctrl_rotateX.o" "Robot_RigRN.phl[967]";
-connectAttr "R_foot_Ik_Ctrl_rotateY.o" "Robot_RigRN.phl[968]";
-connectAttr "R_foot_Ik_Ctrl_rotateZ.o" "Robot_RigRN.phl[969]";
-connectAttr "L_foot_Ik_Ctrl_rotateX.o" "Robot_RigRN.phl[970]";
-connectAttr "L_foot_Ik_Ctrl_rotateY.o" "Robot_RigRN.phl[971]";
-connectAttr "L_foot_Ik_Ctrl_rotateZ.o" "Robot_RigRN.phl[972]";
-connectAttr "L_foot_Ik_Ctrl_translateX.o" "Robot_RigRN.phl[973]";
-connectAttr "L_foot_Ik_Ctrl_translateY.o" "Robot_RigRN.phl[974]";
-connectAttr "L_foot_Ik_Ctrl_translateZ.o" "Robot_RigRN.phl[975]";
-connectAttr "R_forearm_Ctrl_translateX.o" "Robot_RigRN.phl[976]";
-connectAttr "R_forearm_Ctrl_translateY.o" "Robot_RigRN.phl[977]";
-connectAttr "R_forearm_Ctrl_translateZ.o" "Robot_RigRN.phl[978]";
-connectAttr "R_forearm_Ctrl_rotateX.o" "Robot_RigRN.phl[979]";
-connectAttr "R_forearm_Ctrl_rotateY.o" "Robot_RigRN.phl[980]";
-connectAttr "R_forearm_Ctrl_rotateZ.o" "Robot_RigRN.phl[981]";
-connectAttr "R_hand_Ctrl_translateX.o" "Robot_RigRN.phl[982]";
-connectAttr "R_hand_Ctrl_rotateX.o" "Robot_RigRN.phl[983]";
-connectAttr "R_hand_Ctrl_rotateY.o" "Robot_RigRN.phl[984]";
-connectAttr "R_hand_Ctrl_rotateZ.o" "Robot_RigRN.phl[985]";
-connectAttr "R_index_01_Ctrl_rotateX.o" "Robot_RigRN.phl[986]";
-connectAttr "R_index_01_Ctrl_rotateY.o" "Robot_RigRN.phl[987]";
-connectAttr "R_index_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[988]";
-connectAttr "R_index_02_Ctrl_rotateX.o" "Robot_RigRN.phl[989]";
-connectAttr "R_index_02_Ctrl_rotateY.o" "Robot_RigRN.phl[990]";
-connectAttr "R_index_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[991]";
-connectAttr "R_index_03_Ctrl_rotateX.o" "Robot_RigRN.phl[992]";
-connectAttr "R_index_03_Ctrl_rotateY.o" "Robot_RigRN.phl[993]";
-connectAttr "R_index_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[994]";
-connectAttr "R_ring_01_Ctrl_rotateX.o" "Robot_RigRN.phl[995]";
-connectAttr "R_ring_01_Ctrl_rotateY.o" "Robot_RigRN.phl[996]";
-connectAttr "R_ring_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[997]";
-connectAttr "R_ring_02_Ctrl_rotateX.o" "Robot_RigRN.phl[998]";
-connectAttr "R_ring_02_Ctrl_rotateY.o" "Robot_RigRN.phl[999]";
-connectAttr "R_ring_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1000]";
-connectAttr "R_ring_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1001]";
-connectAttr "R_ring_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1002]";
-connectAttr "R_ring_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1003]";
-connectAttr "R_handPalm_Ctrl_rotateZ.o" "Robot_RigRN.phl[1004]";
-connectAttr "R_thumb_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1005]";
-connectAttr "R_thumb_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1006]";
-connectAttr "R_thumb_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1007]";
-connectAttr "R_thumb_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1008]";
-connectAttr "R_thumb_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1009]";
-connectAttr "R_thumb_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1010]";
-connectAttr "R_thumb_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1011]";
-connectAttr "R_thumb_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1012]";
-connectAttr "R_thumb_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1013]";
-connectAttr "R_armSettings_Ctrl_IkFkSwitch.o" "Robot_RigRN.phl[1014]";
-connectAttr "L_forearm_Ctrl_translateX.o" "Robot_RigRN.phl[1015]";
-connectAttr "L_forearm_Ctrl_translateY.o" "Robot_RigRN.phl[1016]";
-connectAttr "L_forearm_Ctrl_translateZ.o" "Robot_RigRN.phl[1017]";
-connectAttr "L_forearm_Ctrl_rotateX.o" "Robot_RigRN.phl[1018]";
-connectAttr "L_forearm_Ctrl_rotateY.o" "Robot_RigRN.phl[1019]";
-connectAttr "L_forearm_Ctrl_rotateZ.o" "Robot_RigRN.phl[1020]";
-connectAttr "L_hand_Ctrl_translateX.o" "Robot_RigRN.phl[1021]";
-connectAttr "L_hand_Ctrl_rotateX.o" "Robot_RigRN.phl[1022]";
-connectAttr "L_hand_Ctrl_rotateY.o" "Robot_RigRN.phl[1023]";
-connectAttr "L_hand_Ctrl_rotateZ.o" "Robot_RigRN.phl[1024]";
-connectAttr "L_ring_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1025]";
-connectAttr "L_ring_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1026]";
-connectAttr "L_ring_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1027]";
-connectAttr "L_ring_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1028]";
-connectAttr "L_ring_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1029]";
-connectAttr "L_ring_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1030]";
-connectAttr "L_ring_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1031]";
-connectAttr "L_ring_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1032]";
-connectAttr "L_ring_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1033]";
-connectAttr "L_handPalm_Ctrl_rotateZ.o" "Robot_RigRN.phl[1034]";
-connectAttr "L_thumb_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1035]";
-connectAttr "L_thumb_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1036]";
-connectAttr "L_thumb_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1037]";
-connectAttr "L_thumb_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1038]";
-connectAttr "L_thumb_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1039]";
-connectAttr "L_thumb_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1040]";
-connectAttr "L_thumb_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1041]";
-connectAttr "L_thumb_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1042]";
-connectAttr "L_thumb_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1043]";
-connectAttr "L_index_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1044]";
-connectAttr "L_index_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1045]";
-connectAttr "L_index_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1046]";
-connectAttr "L_index_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1047]";
-connectAttr "L_index_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1048]";
-connectAttr "L_index_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1049]";
-connectAttr "L_index_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1050]";
-connectAttr "L_index_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1051]";
-connectAttr "L_index_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1052]";
-connectAttr "L_armSettings_Ctrl_IkFkSwitch.o" "Robot_RigRN.phl[1053]";
-connectAttr "head_Ctrl_translateX.o" "Robot_RigRN.phl[1054]";
-connectAttr "head_Ctrl_translateY.o" "Robot_RigRN.phl[1055]";
-connectAttr "head_Ctrl_translateZ.o" "Robot_RigRN.phl[1056]";
-connectAttr "head_Ctrl_rotateX.o" "Robot_RigRN.phl[1057]";
-connectAttr "head_Ctrl_rotateY.o" "Robot_RigRN.phl[1058]";
-connectAttr "head_Ctrl_rotateZ.o" "Robot_RigRN.phl[1059]";
-connectAttr "L_lowerEyelid_Ctrl_translateX.o" "Robot_RigRN.phl[1060]";
-connectAttr "L_lowerEyelid_Ctrl_translateY2.o" "Robot_RigRN.phl[1061]";
-connectAttr "L_lowerEyelid_Ctrl_translateZ.o" "Robot_RigRN.phl[1062]";
-connectAttr "L_lowerEyelid_Ctrl_rotateZ.o" "Robot_RigRN.phl[1063]";
-connectAttr "R_upperEyelid_Ctrl_translateX.o" "Robot_RigRN.phl[1064]";
-connectAttr "R_upperEyelid_Ctrl_translateY1.o" "Robot_RigRN.phl[1065]";
-connectAttr "R_upperEyelid_Ctrl_translateZ.o" "Robot_RigRN.phl[1066]";
-connectAttr "R_upperEyelid_Ctrl_rotateZ1.o" "Robot_RigRN.phl[1067]";
-connectAttr "R_upperEyelid_Ctrl_translateY.o" "Robot_RigRN.phl[1068]";
-connectAttr "R_upperEyelid_Ctrl_rotateZ.o" "Robot_RigRN.phl[1069]";
-connectAttr "L_lowerEyelid_Ctrl_translateY1.o" "Robot_RigRN.phl[1070]";
-connectAttr "L_lowerEyelid_Ctrl_scaleY.o" "Robot_RigRN.phl[1071]";
-connectAttr "R_mouth_Ctrl_translateY.o" "Robot_RigRN.phl[1072]";
-connectAttr "R_mouth_Ctrl_translateZ.o" "Robot_RigRN.phl[1073]";
-connectAttr "R_mouth_Ctrl_translateX.o" "Robot_RigRN.phl[1074]";
-connectAttr "R_mouthTop_sub_Ctrl_translateX.o" "Robot_RigRN.phl[1075]";
-connectAttr "R_mouthTop_sub_Ctrl_translateY.o" "Robot_RigRN.phl[1076]";
-connectAttr "R_mouthTop_sub_Ctrl_translateZ.o" "Robot_RigRN.phl[1077]";
-connectAttr "mouthTop_Ctrl_translateX.o" "Robot_RigRN.phl[1078]";
-connectAttr "mouthTop_Ctrl_translateY.o" "Robot_RigRN.phl[1079]";
-connectAttr "mouthTop_Ctrl_translateZ.o" "Robot_RigRN.phl[1080]";
-connectAttr "mouthBot_Ctrl_translateX.o" "Robot_RigRN.phl[1081]";
-connectAttr "mouthBot_Ctrl_translateY.o" "Robot_RigRN.phl[1082]";
-connectAttr "mouthBot_Ctrl_translateZ.o" "Robot_RigRN.phl[1083]";
-connectAttr "mouthTop_sub_Ctrl_translateX.o" "Robot_RigRN.phl[1084]";
-connectAttr "mouthTop_sub_Ctrl_translateY.o" "Robot_RigRN.phl[1085]";
-connectAttr "mouthTop_sub_Ctrl_translateZ.o" "Robot_RigRN.phl[1086]";
-connectAttr "upperTeeth_Ctrl_translateY.o" "Robot_RigRN.phl[1087]";
-connectAttr "L_mouthTop_sub_Ctrl_translateX.o" "Robot_RigRN.phl[1088]";
-connectAttr "L_mouthTop_sub_Ctrl_translateY.o" "Robot_RigRN.phl[1089]";
-connectAttr "L_mouthTop_sub_Ctrl_translateZ.o" "Robot_RigRN.phl[1090]";
-connectAttr "L_mouth_Ctrl_translateY.o" "Robot_RigRN.phl[1091]";
-connectAttr "L_mouth_Ctrl_translateZ.o" "Robot_RigRN.phl[1092]";
-connectAttr "L_mouth_Ctrl_translateX.o" "Robot_RigRN.phl[1093]";
-connectAttr "mouth_Ctrl_translateX.o" "Robot_RigRN.phl[1094]";
-connectAttr "mouth_Ctrl_translateY.o" "Robot_RigRN.phl[1095]";
-connectAttr "mouth_Ctrl_translateZ.o" "Robot_RigRN.phl[1096]";
-connectAttr "eyes_Ctrl_translateX.o" "Robot_RigRN.phl[1097]";
-connectAttr "eyes_Ctrl_translateY.o" "Robot_RigRN.phl[1098]";
-connectAttr "eyes_Ctrl_translateZ.o" "Robot_RigRN.phl[1099]";
-connectAttr "L_eye_Ctrl_eyeFocus.o" "Robot_RigRN.phl[1100]";
-connectAttr "R_eye_Ctrl_eyeFocus.o" "Robot_RigRN.phl[1101]";
-connectAttr "L_arm_01_Ctrl_translateX.o" "Robot_RigRN.phl[1102]";
-connectAttr "L_arm_01_Ctrl_translateY.o" "Robot_RigRN.phl[1103]";
-connectAttr "L_arm_02_Ctrl_translateX.o" "Robot_RigRN.phl[1104]";
-connectAttr "L_arm_02_Ctrl_translateY.o" "Robot_RigRN.phl[1105]";
-connectAttr "L_arm_02_Ctrl_translateZ.o" "Robot_RigRN.phl[1106]";
-connectAttr "L_arm_03_Ctrl_translateX.o" "Robot_RigRN.phl[1107]";
-connectAttr "L_arm_03_Ctrl_translateY.o" "Robot_RigRN.phl[1108]";
-connectAttr "L_arm_03_Ctrl_translateZ.o" "Robot_RigRN.phl[1109]";
-connectAttr "L_arm_Crv_visibility.o" "Robot_RigRN.phl[1110]";
-connectAttr "L_arm_Crv_translateX.o" "Robot_RigRN.phl[1111]";
-connectAttr "L_arm_Crv_translateY.o" "Robot_RigRN.phl[1112]";
-connectAttr "L_arm_Crv_translateZ.o" "Robot_RigRN.phl[1113]";
-connectAttr "L_arm_Crv_rotateX.o" "Robot_RigRN.phl[1114]";
-connectAttr "L_arm_Crv_rotateY.o" "Robot_RigRN.phl[1115]";
-connectAttr "L_arm_Crv_rotateZ.o" "Robot_RigRN.phl[1116]";
-connectAttr "L_arm_hiCrv_visibility.o" "Robot_RigRN.phl[1117]";
-connectAttr "L_arm_hiCrv_translateX.o" "Robot_RigRN.phl[1118]";
-connectAttr "L_arm_hiCrv_translateY.o" "Robot_RigRN.phl[1119]";
-connectAttr "L_arm_hiCrv_rotateX.o" "Robot_RigRN.phl[1120]";
-connectAttr "L_arm_hiCrv_rotateY.o" "Robot_RigRN.phl[1121]";
-connectAttr "L_arm_hiCrv_rotateZ.o" "Robot_RigRN.phl[1122]";
-connectAttr "Robot_RigRN.phl[1123]" "Robot_RigRN.phl[1124]";
-connectAttr "R_arm_01_Ctrl_translateX.o" "Robot_RigRN.phl[1125]";
-connectAttr "R_arm_01_Ctrl_translateY.o" "Robot_RigRN.phl[1126]";
-connectAttr "R_arm_01_Ctrl_translateZ.o" "Robot_RigRN.phl[1127]";
-connectAttr "Robot_RigRN.phl[1128]" "Robot_RigRN.phl[1129]";
-connectAttr "R_arm_02_Ctrl_translateX.o" "Robot_RigRN.phl[1130]";
-connectAttr "R_arm_02_Ctrl_translateY.o" "Robot_RigRN.phl[1131]";
-connectAttr "R_arm_02_Ctrl_translateZ.o" "Robot_RigRN.phl[1132]";
-connectAttr "Robot_RigRN.phl[1133]" "Robot_RigRN.phl[1134]";
-connectAttr "R_arm_03_Ctrl_translateX.o" "Robot_RigRN.phl[1135]";
-connectAttr "R_arm_03_Ctrl_translateY.o" "Robot_RigRN.phl[1136]";
-connectAttr "R_arm_03_Ctrl_translateZ.o" "Robot_RigRN.phl[1137]";
-connectAttr "R_arm_Crv_visibility.o" "Robot_RigRN.phl[1138]";
-connectAttr "R_arm_Crv_translateX.o" "Robot_RigRN.phl[1139]";
-connectAttr "R_arm_Crv_translateY.o" "Robot_RigRN.phl[1140]";
-connectAttr "R_arm_Crv_translateZ.o" "Robot_RigRN.phl[1141]";
-connectAttr "R_arm_Crv_rotateX.o" "Robot_RigRN.phl[1142]";
-connectAttr "R_arm_Crv_rotateY.o" "Robot_RigRN.phl[1143]";
-connectAttr "R_arm_Crv_rotateZ.o" "Robot_RigRN.phl[1144]";
-connectAttr "R_arm_hiCrv_visibility.o" "Robot_RigRN.phl[1145]";
-connectAttr "R_arm_hiCrv_translateX.o" "Robot_RigRN.phl[1146]";
-connectAttr "R_arm_hiCrv_translateY.o" "Robot_RigRN.phl[1147]";
-connectAttr "R_arm_hiCrv_translateZ.o" "Robot_RigRN.phl[1148]";
-connectAttr "R_arm_hiCrv_rotateX.o" "Robot_RigRN.phl[1149]";
-connectAttr "R_arm_hiCrv_rotateY.o" "Robot_RigRN.phl[1150]";
-connectAttr "R_arm_hiCrv_rotateZ.o" "Robot_RigRN.phl[1151]";
-connectAttr "settings_Ctrl_DebuggingVisibility.o" "Robot_RigRN.phl[1152]";
+	setAttr -s 3 ".sol";
+connectAttr "root_Ctrl_translateX.o" "Robot_RigRN.phl[1135]";
+connectAttr "root_Ctrl_translateY.o" "Robot_RigRN.phl[1136]";
+connectAttr "root_Ctrl_translateZ.o" "Robot_RigRN.phl[1137]";
+connectAttr "root_Ctrl_rotateX.o" "Robot_RigRN.phl[1138]";
+connectAttr "root_Ctrl_rotateY.o" "Robot_RigRN.phl[1139]";
+connectAttr "root_Ctrl_rotateZ.o" "Robot_RigRN.phl[1140]";
+connectAttr "pelvis_Ctrl_rotateY.o" "Robot_RigRN.phl[1141]";
+connectAttr "pelvis_Ctrl_rotateX.o" "Robot_RigRN.phl[1142]";
+connectAttr "pelvis_Ctrl_rotateZ.o" "Robot_RigRN.phl[1143]";
+connectAttr "L_thigh_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1144]";
+connectAttr "L_thigh_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[1145]";
+connectAttr "L_thigh_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[1146]";
+connectAttr "R_thigh_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1147]";
+connectAttr "R_thigh_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[1148]";
+connectAttr "R_thigh_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[1149]";
+connectAttr "L_toe_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1150]";
+connectAttr "L_toe_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[1151]";
+connectAttr "L_toe_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[1152]";
+connectAttr "L_heel_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1153]";
+connectAttr "L_heel_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[1154]";
+connectAttr "L_heel_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[1155]";
+connectAttr "L_shin_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1156]";
+connectAttr "L_foot_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1157]";
+connectAttr "R_shin_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1158]";
+connectAttr "R_foot_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1159]";
+connectAttr "R_toe_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1160]";
+connectAttr "R_toe_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[1161]";
+connectAttr "R_toe_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[1162]";
+connectAttr "R_heel_Fk_Ctrl_rotateX.o" "Robot_RigRN.phl[1163]";
+connectAttr "R_heel_Fk_Ctrl_rotateY.o" "Robot_RigRN.phl[1164]";
+connectAttr "R_heel_Fk_Ctrl_rotateZ.o" "Robot_RigRN.phl[1165]";
+connectAttr "body_Ctrl_rotateY.o" "Robot_RigRN.phl[1166]";
+connectAttr "body_Ctrl_rotateX.o" "Robot_RigRN.phl[1167]";
+connectAttr "body_Ctrl_rotateZ.o" "Robot_RigRN.phl[1168]";
+connectAttr "shoulderPlate_Ctrl_translateX.o" "Robot_RigRN.phl[1169]";
+connectAttr "shoulderPlate_Ctrl_translateY.o" "Robot_RigRN.phl[1170]";
+connectAttr "shoulderPlate_Ctrl_translateZ.o" "Robot_RigRN.phl[1171]";
+connectAttr "shoulderPlate_Ctrl_rotateX.o" "Robot_RigRN.phl[1172]";
+connectAttr "shoulderPlate_Ctrl_rotateY.o" "Robot_RigRN.phl[1173]";
+connectAttr "shoulderPlate_Ctrl_rotateZ.o" "Robot_RigRN.phl[1174]";
+connectAttr "L_shoulder_Ctrl_rotateX.o" "Robot_RigRN.phl[1175]";
+connectAttr "L_shoulder_Ctrl_rotateY.o" "Robot_RigRN.phl[1176]";
+connectAttr "L_shoulder_Ctrl_rotateZ.o" "Robot_RigRN.phl[1177]";
+connectAttr "L_armBall_Ctrl_translateY.o" "Robot_RigRN.phl[1178]";
+connectAttr "L_armBall_Ctrl_rotateZ.o" "Robot_RigRN.phl[1179]";
+connectAttr "R_shoulder_Ctrl_rotateX.o" "Robot_RigRN.phl[1180]";
+connectAttr "R_shoulder_Ctrl_rotateY.o" "Robot_RigRN.phl[1181]";
+connectAttr "R_shoulder_Ctrl_rotateZ.o" "Robot_RigRN.phl[1182]";
+connectAttr "pairBlend1.oty" "Robot_RigRN.phl[1183]";
+connectAttr "pairBlend1.orz" "Robot_RigRN.phl[1184]";
+connectAttr "Robot_RigRN.phl[1185]" "pairBlend1.w";
+connectAttr "R_armBall_Ctrl_blendParent1.o" "Robot_RigRN.phl[1186]";
+connectAttr "antenna_Ctrl_translateX.o" "Robot_RigRN.phl[1187]";
+connectAttr "antenna_Ctrl_translateY.o" "Robot_RigRN.phl[1188]";
+connectAttr "antenna_Ctrl_translateZ.o" "Robot_RigRN.phl[1189]";
+connectAttr "L_kneePV_Ctrl_translateX.o" "Robot_RigRN.phl[1190]";
+connectAttr "L_kneePV_Ctrl_translateY.o" "Robot_RigRN.phl[1191]";
+connectAttr "L_kneePV_Ctrl_translateZ.o" "Robot_RigRN.phl[1192]";
+connectAttr "R_kneePV_Ctrl_translateX.o" "Robot_RigRN.phl[1193]";
+connectAttr "R_kneePV_Ctrl_translateY.o" "Robot_RigRN.phl[1194]";
+connectAttr "R_kneePV_Ctrl_translateZ.o" "Robot_RigRN.phl[1195]";
+connectAttr "R_foot_Ik_Ctrl_translateX.o" "Robot_RigRN.phl[1196]";
+connectAttr "R_foot_Ik_Ctrl_translateY.o" "Robot_RigRN.phl[1197]";
+connectAttr "R_foot_Ik_Ctrl_translateZ.o" "Robot_RigRN.phl[1198]";
+connectAttr "R_foot_Ik_Ctrl_rotateX.o" "Robot_RigRN.phl[1199]";
+connectAttr "R_foot_Ik_Ctrl_rotateY.o" "Robot_RigRN.phl[1200]";
+connectAttr "R_foot_Ik_Ctrl_rotateZ.o" "Robot_RigRN.phl[1201]";
+connectAttr "L_foot_Ik_Ctrl_rotateX.o" "Robot_RigRN.phl[1202]";
+connectAttr "L_foot_Ik_Ctrl_rotateY.o" "Robot_RigRN.phl[1203]";
+connectAttr "L_foot_Ik_Ctrl_rotateZ.o" "Robot_RigRN.phl[1204]";
+connectAttr "L_foot_Ik_Ctrl_translateX.o" "Robot_RigRN.phl[1205]";
+connectAttr "L_foot_Ik_Ctrl_translateY.o" "Robot_RigRN.phl[1206]";
+connectAttr "L_foot_Ik_Ctrl_translateZ.o" "Robot_RigRN.phl[1207]";
+connectAttr "R_forearm_Ctrl_translateX.o" "Robot_RigRN.phl[1208]";
+connectAttr "R_forearm_Ctrl_translateY.o" "Robot_RigRN.phl[1209]";
+connectAttr "R_forearm_Ctrl_translateZ.o" "Robot_RigRN.phl[1210]";
+connectAttr "R_forearm_Ctrl_rotateX.o" "Robot_RigRN.phl[1211]";
+connectAttr "R_forearm_Ctrl_rotateY.o" "Robot_RigRN.phl[1212]";
+connectAttr "R_forearm_Ctrl_rotateZ.o" "Robot_RigRN.phl[1213]";
+connectAttr "R_hand_Ctrl_translateX.o" "Robot_RigRN.phl[1214]";
+connectAttr "R_hand_Ctrl_rotateX.o" "Robot_RigRN.phl[1215]";
+connectAttr "R_hand_Ctrl_rotateY.o" "Robot_RigRN.phl[1216]";
+connectAttr "R_hand_Ctrl_rotateZ.o" "Robot_RigRN.phl[1217]";
+connectAttr "R_index_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1218]";
+connectAttr "R_index_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1219]";
+connectAttr "R_index_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1220]";
+connectAttr "R_index_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1221]";
+connectAttr "R_index_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1222]";
+connectAttr "R_index_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1223]";
+connectAttr "R_index_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1224]";
+connectAttr "R_index_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1225]";
+connectAttr "R_index_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1226]";
+connectAttr "R_ring_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1227]";
+connectAttr "R_ring_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1228]";
+connectAttr "R_ring_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1229]";
+connectAttr "R_ring_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1230]";
+connectAttr "R_ring_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1231]";
+connectAttr "R_ring_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1232]";
+connectAttr "R_ring_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1233]";
+connectAttr "R_ring_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1234]";
+connectAttr "R_ring_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1235]";
+connectAttr "R_handPalm_Ctrl_rotateZ.o" "Robot_RigRN.phl[1236]";
+connectAttr "R_thumb_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1237]";
+connectAttr "R_thumb_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1238]";
+connectAttr "R_thumb_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1239]";
+connectAttr "R_thumb_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1240]";
+connectAttr "R_thumb_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1241]";
+connectAttr "R_thumb_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1242]";
+connectAttr "R_thumb_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1243]";
+connectAttr "R_thumb_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1244]";
+connectAttr "R_thumb_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1245]";
+connectAttr "R_armSettings_Ctrl_IkFkSwitch.o" "Robot_RigRN.phl[1246]";
+connectAttr "L_forearm_Ctrl_translateX.o" "Robot_RigRN.phl[1247]";
+connectAttr "L_forearm_Ctrl_translateY.o" "Robot_RigRN.phl[1248]";
+connectAttr "L_forearm_Ctrl_translateZ.o" "Robot_RigRN.phl[1249]";
+connectAttr "L_forearm_Ctrl_rotateX.o" "Robot_RigRN.phl[1250]";
+connectAttr "L_forearm_Ctrl_rotateY.o" "Robot_RigRN.phl[1251]";
+connectAttr "L_forearm_Ctrl_rotateZ.o" "Robot_RigRN.phl[1252]";
+connectAttr "L_hand_Ctrl_translateX.o" "Robot_RigRN.phl[1253]";
+connectAttr "L_hand_Ctrl_rotateX.o" "Robot_RigRN.phl[1254]";
+connectAttr "L_hand_Ctrl_rotateY.o" "Robot_RigRN.phl[1255]";
+connectAttr "L_hand_Ctrl_rotateZ.o" "Robot_RigRN.phl[1256]";
+connectAttr "L_ring_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1257]";
+connectAttr "L_ring_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1258]";
+connectAttr "L_ring_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1259]";
+connectAttr "L_ring_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1260]";
+connectAttr "L_ring_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1261]";
+connectAttr "L_ring_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1262]";
+connectAttr "L_ring_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1263]";
+connectAttr "L_ring_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1264]";
+connectAttr "L_ring_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1265]";
+connectAttr "L_handPalm_Ctrl_rotateZ.o" "Robot_RigRN.phl[1266]";
+connectAttr "L_thumb_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1267]";
+connectAttr "L_thumb_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1268]";
+connectAttr "L_thumb_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1269]";
+connectAttr "L_thumb_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1270]";
+connectAttr "L_thumb_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1271]";
+connectAttr "L_thumb_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1272]";
+connectAttr "L_thumb_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1273]";
+connectAttr "L_thumb_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1274]";
+connectAttr "L_thumb_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1275]";
+connectAttr "L_index_01_Ctrl_rotateX.o" "Robot_RigRN.phl[1276]";
+connectAttr "L_index_01_Ctrl_rotateY.o" "Robot_RigRN.phl[1277]";
+connectAttr "L_index_01_Ctrl_rotateZ.o" "Robot_RigRN.phl[1278]";
+connectAttr "L_index_02_Ctrl_rotateX.o" "Robot_RigRN.phl[1279]";
+connectAttr "L_index_02_Ctrl_rotateY.o" "Robot_RigRN.phl[1280]";
+connectAttr "L_index_02_Ctrl_rotateZ.o" "Robot_RigRN.phl[1281]";
+connectAttr "L_index_03_Ctrl_rotateX.o" "Robot_RigRN.phl[1282]";
+connectAttr "L_index_03_Ctrl_rotateY.o" "Robot_RigRN.phl[1283]";
+connectAttr "L_index_03_Ctrl_rotateZ.o" "Robot_RigRN.phl[1284]";
+connectAttr "L_armSettings_Ctrl_IkFkSwitch.o" "Robot_RigRN.phl[1285]";
+connectAttr "head_Ctrl_translateX.o" "Robot_RigRN.phl[1286]";
+connectAttr "head_Ctrl_translateY.o" "Robot_RigRN.phl[1287]";
+connectAttr "head_Ctrl_translateZ.o" "Robot_RigRN.phl[1288]";
+connectAttr "head_Ctrl_rotateX.o" "Robot_RigRN.phl[1289]";
+connectAttr "head_Ctrl_rotateY.o" "Robot_RigRN.phl[1290]";
+connectAttr "head_Ctrl_rotateZ.o" "Robot_RigRN.phl[1291]";
+connectAttr "L_lowerEyelid_Ctrl_translateX.o" "Robot_RigRN.phl[1292]";
+connectAttr "L_lowerEyelid_Ctrl_translateY2.o" "Robot_RigRN.phl[1293]";
+connectAttr "L_lowerEyelid_Ctrl_translateZ.o" "Robot_RigRN.phl[1294]";
+connectAttr "L_lowerEyelid_Ctrl_rotateZ.o" "Robot_RigRN.phl[1295]";
+connectAttr "R_upperEyelid_Ctrl_translateX.o" "Robot_RigRN.phl[1296]";
+connectAttr "R_upperEyelid_Ctrl_translateY1.o" "Robot_RigRN.phl[1297]";
+connectAttr "R_upperEyelid_Ctrl_translateZ.o" "Robot_RigRN.phl[1298]";
+connectAttr "R_upperEyelid_Ctrl_rotateZ1.o" "Robot_RigRN.phl[1299]";
+connectAttr "R_upperEyelid_Ctrl_translateY.o" "Robot_RigRN.phl[1300]";
+connectAttr "R_upperEyelid_Ctrl_rotateZ.o" "Robot_RigRN.phl[1301]";
+connectAttr "L_lowerEyelid_Ctrl_translateY1.o" "Robot_RigRN.phl[1302]";
+connectAttr "L_lowerEyelid_Ctrl_scaleY.o" "Robot_RigRN.phl[1303]";
+connectAttr "R_mouth_Ctrl_translateY.o" "Robot_RigRN.phl[1304]";
+connectAttr "R_mouth_Ctrl_translateZ.o" "Robot_RigRN.phl[1305]";
+connectAttr "R_mouth_Ctrl_translateX.o" "Robot_RigRN.phl[1306]";
+connectAttr "R_mouthTop_sub_Ctrl_translateX.o" "Robot_RigRN.phl[1307]";
+connectAttr "R_mouthTop_sub_Ctrl_translateY.o" "Robot_RigRN.phl[1308]";
+connectAttr "R_mouthTop_sub_Ctrl_translateZ.o" "Robot_RigRN.phl[1309]";
+connectAttr "mouthTop_Ctrl_translateX.o" "Robot_RigRN.phl[1310]";
+connectAttr "mouthTop_Ctrl_translateY.o" "Robot_RigRN.phl[1311]";
+connectAttr "mouthTop_Ctrl_translateZ.o" "Robot_RigRN.phl[1312]";
+connectAttr "mouthBot_Ctrl_translateX.o" "Robot_RigRN.phl[1313]";
+connectAttr "mouthBot_Ctrl_translateY.o" "Robot_RigRN.phl[1314]";
+connectAttr "mouthBot_Ctrl_translateZ.o" "Robot_RigRN.phl[1315]";
+connectAttr "mouthTop_sub_Ctrl_translateX.o" "Robot_RigRN.phl[1316]";
+connectAttr "mouthTop_sub_Ctrl_translateY.o" "Robot_RigRN.phl[1317]";
+connectAttr "mouthTop_sub_Ctrl_translateZ.o" "Robot_RigRN.phl[1318]";
+connectAttr "upperTeeth_Ctrl_translateY.o" "Robot_RigRN.phl[1319]";
+connectAttr "lowerTeeth_Ctrl_translateY.o" "Robot_RigRN.phl[1320]";
+connectAttr "L_mouthTop_sub_Ctrl_translateX.o" "Robot_RigRN.phl[1321]";
+connectAttr "L_mouthTop_sub_Ctrl_translateY.o" "Robot_RigRN.phl[1322]";
+connectAttr "L_mouthTop_sub_Ctrl_translateZ.o" "Robot_RigRN.phl[1323]";
+connectAttr "L_mouth_Ctrl_translateY.o" "Robot_RigRN.phl[1324]";
+connectAttr "L_mouth_Ctrl_translateZ.o" "Robot_RigRN.phl[1325]";
+connectAttr "L_mouth_Ctrl_translateX.o" "Robot_RigRN.phl[1326]";
+connectAttr "mouth_Ctrl_translateX.o" "Robot_RigRN.phl[1327]";
+connectAttr "mouth_Ctrl_translateY.o" "Robot_RigRN.phl[1328]";
+connectAttr "mouth_Ctrl_translateZ.o" "Robot_RigRN.phl[1329]";
+connectAttr "eyes_Ctrl_translateX.o" "Robot_RigRN.phl[1330]";
+connectAttr "eyes_Ctrl_translateY.o" "Robot_RigRN.phl[1331]";
+connectAttr "eyes_Ctrl_translateZ.o" "Robot_RigRN.phl[1332]";
+connectAttr "L_eye_Ctrl_eyeFocus.o" "Robot_RigRN.phl[1333]";
+connectAttr "R_eye_Ctrl_eyeFocus.o" "Robot_RigRN.phl[1334]";
+connectAttr "L_arm_01_Ctrl_translateX.o" "Robot_RigRN.phl[1335]";
+connectAttr "L_arm_01_Ctrl_translateY.o" "Robot_RigRN.phl[1336]";
+connectAttr "L_arm_02_Ctrl_translateX.o" "Robot_RigRN.phl[1337]";
+connectAttr "L_arm_02_Ctrl_translateY.o" "Robot_RigRN.phl[1338]";
+connectAttr "L_arm_02_Ctrl_translateZ.o" "Robot_RigRN.phl[1339]";
+connectAttr "L_arm_03_Ctrl_translateX.o" "Robot_RigRN.phl[1340]";
+connectAttr "L_arm_03_Ctrl_translateY.o" "Robot_RigRN.phl[1341]";
+connectAttr "L_arm_03_Ctrl_translateZ.o" "Robot_RigRN.phl[1342]";
+connectAttr "L_arm_Crv_visibility.o" "Robot_RigRN.phl[1343]";
+connectAttr "L_arm_Crv_translateX.o" "Robot_RigRN.phl[1344]";
+connectAttr "L_arm_Crv_translateY.o" "Robot_RigRN.phl[1345]";
+connectAttr "L_arm_Crv_translateZ.o" "Robot_RigRN.phl[1346]";
+connectAttr "L_arm_Crv_rotateX.o" "Robot_RigRN.phl[1347]";
+connectAttr "L_arm_Crv_rotateY.o" "Robot_RigRN.phl[1348]";
+connectAttr "L_arm_Crv_rotateZ.o" "Robot_RigRN.phl[1349]";
+connectAttr "L_arm_hiCrv_visibility.o" "Robot_RigRN.phl[1350]";
+connectAttr "L_arm_hiCrv_translateX.o" "Robot_RigRN.phl[1351]";
+connectAttr "L_arm_hiCrv_translateY.o" "Robot_RigRN.phl[1352]";
+connectAttr "L_arm_hiCrv_rotateX.o" "Robot_RigRN.phl[1353]";
+connectAttr "L_arm_hiCrv_rotateY.o" "Robot_RigRN.phl[1354]";
+connectAttr "L_arm_hiCrv_rotateZ.o" "Robot_RigRN.phl[1355]";
+connectAttr "Robot_RigRN.phl[1356]" "Robot_RigRN.phl[1357]";
+connectAttr "R_arm_01_Ctrl_translateX.o" "Robot_RigRN.phl[1358]";
+connectAttr "R_arm_01_Ctrl_translateY.o" "Robot_RigRN.phl[1359]";
+connectAttr "R_arm_01_Ctrl_translateZ.o" "Robot_RigRN.phl[1360]";
+connectAttr "Robot_RigRN.phl[1361]" "Robot_RigRN.phl[1362]";
+connectAttr "R_arm_02_Ctrl_translateX.o" "Robot_RigRN.phl[1363]";
+connectAttr "R_arm_02_Ctrl_translateY.o" "Robot_RigRN.phl[1364]";
+connectAttr "R_arm_02_Ctrl_translateZ.o" "Robot_RigRN.phl[1365]";
+connectAttr "Robot_RigRN.phl[1366]" "Robot_RigRN.phl[1367]";
+connectAttr "R_arm_03_Ctrl_translateX.o" "Robot_RigRN.phl[1368]";
+connectAttr "R_arm_03_Ctrl_translateY.o" "Robot_RigRN.phl[1369]";
+connectAttr "R_arm_03_Ctrl_translateZ.o" "Robot_RigRN.phl[1370]";
+connectAttr "R_arm_Crv_visibility.o" "Robot_RigRN.phl[1371]";
+connectAttr "R_arm_Crv_translateX.o" "Robot_RigRN.phl[1372]";
+connectAttr "R_arm_Crv_translateY.o" "Robot_RigRN.phl[1373]";
+connectAttr "R_arm_Crv_translateZ.o" "Robot_RigRN.phl[1374]";
+connectAttr "R_arm_Crv_rotateX.o" "Robot_RigRN.phl[1375]";
+connectAttr "R_arm_Crv_rotateY.o" "Robot_RigRN.phl[1376]";
+connectAttr "R_arm_Crv_rotateZ.o" "Robot_RigRN.phl[1377]";
+connectAttr "R_arm_hiCrv_visibility.o" "Robot_RigRN.phl[1378]";
+connectAttr "R_arm_hiCrv_translateX.o" "Robot_RigRN.phl[1379]";
+connectAttr "R_arm_hiCrv_translateY.o" "Robot_RigRN.phl[1380]";
+connectAttr "R_arm_hiCrv_translateZ.o" "Robot_RigRN.phl[1381]";
+connectAttr "R_arm_hiCrv_rotateX.o" "Robot_RigRN.phl[1382]";
+connectAttr "R_arm_hiCrv_rotateY.o" "Robot_RigRN.phl[1383]";
+connectAttr "R_arm_hiCrv_rotateZ.o" "Robot_RigRN.phl[1384]";
+connectAttr "settings_Ctrl_DebuggingVisibility.o" "Robot_RigRN.phl[1385]";
 connectAttr "Joes_Ship_Ray:scavengersShip1:groupParts4.og" "Joes_Ship_Ray:scavengersShip1:airBrakes1Shape.i"
 		;
 connectAttr "Joes_Ship_Ray:scavengersShip1:groupId343.id" "Joes_Ship_Ray:scavengersShip1:airBrakes1Shape.iog.og[0].gid"
@@ -29997,6 +30077,9 @@ connectAttr "L_hand_Ctrl_scaleX.o" "Robot_RigRN.phl[799]";
 connectAttr "L_hand_Ctrl_scaleY.o" "Robot_RigRN.phl[800]";
 connectAttr "L_hand_Ctrl_scaleZ.o" "Robot_RigRN.phl[801]";
 connectAttr "settings_Ctrl_levelOfDetail.o" "Robot_RigRN.phl[831]";
+connectAttr "Robot_RigRN.phl[1123]" "Robot_RigRN.phl[1124]";
+connectAttr "Robot_RigRN.phl[1128]" "Robot_RigRN.phl[1129]";
+connectAttr "Robot_RigRN.phl[1133]" "Robot_RigRN.phl[1134]";
 connectAttr "sharedReferenceNode1.sr" "Robot_RigRN.sr";
 connectAttr "Robot_RigRN.phl[479]" "pairBlend1.itx2";
 connectAttr "Robot_RigRN.phl[480]" "pairBlend1.ity2";
@@ -30010,4 +30093,6 @@ connectAttr "pairBlend1_inTranslateX1.o" "pairBlend1.itx1";
 connectAttr "pairBlend1_inTranslateY1.o" "pairBlend1.ity1";
 connectAttr "pairBlend1_inTranslateZ1.o" "pairBlend1.itz1";
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
+connectAttr "directionalLightShape1.ltd" ":lightList1.l" -na;
+connectAttr "directionalLight1.iog" ":defaultLightSet.dsm" -na;
 // End of Scene4_Shot31-Mendez ver4.ma
